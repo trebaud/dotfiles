@@ -1,0 +1,52 @@
+{
+  "[json]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "vim.visualstar": true,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.editor.enablePreview": false,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["K"],
+      "after": ["5", "k"]
+    },
+    {
+      "before": ["J"],
+      "after": ["5", "j"]
+    },
+    {
+      "before": ["H"],
+      "commands": [
+        "workbench.action.previousEditor",
+      ]
+    },
+    {
+      "before": ["L"],
+      "commands": [
+        "workbench.action.nextEditor",
+      ]
+    },
+    {
+      "before": ["g", "q"],
+      "commands": [
+        "editor.action.referenceSearch.trigger",
+      ]
+    }
+  ],
+  "[javascript]": {
+    "editor.defaultFormatter": "HookyQR.beautify"
+  },
+  "window.zoomLevel": 1,
+  "workbench.colorCustomizations": {
+    "editorCursor.foreground": "#f600f6",
+    "activityBar.background": "#242526",
+    "activityBar.foreground": "#696969",
+    "statusBar.background": "#005f5f",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f"
+  },
+  "vim.statusBarColorControl": true,
+  "vim.statusBarColors.insert": ["#d8ff2b", "#000"],
+  "vim.statusBarColors.normal": "#5f00af",
+  "vim.statusBarColors.visual": ["#ffc0cb", "#000"]
+}

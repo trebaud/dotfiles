@@ -1,0 +1,26 @@
+[
+    {
+         "key" :  "ctrl+h",
+         "command" :  "workbench.action.navigateLeft"
+    },    
+    {
+         "key" :  "ctrl+l",
+         "command" :  "workbench.action.navigateRight"
+    },    
+    {
+         "key" :  "ctrl+k",
+         "command" :  "workbench.action.navigateUp"
+    },    
+    {
+         "key" :  "ctrl+j",
+         "command" :  "workbench.action.navigateDown"
+    },
+    {
+        "key": "alt+1",
+        "command": "workbench.action.terminal.toggleTerminal"
+    },
+    {
+        "key": "alt+2",
+        "command": "workbench.action.toggleMaximizedPanel"
+    }
+]
