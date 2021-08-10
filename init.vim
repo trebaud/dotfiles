@@ -1,64 +1,73 @@
-" VIM
+" VIMRC
+"
 " Plug 'wfxr/minimap.vim'
+" Plug 'mattn/emmet-vim'
+"
 call plug#begin('~/.config/nvim/plugged')
  " Core plugins
- Plug 'neoclide/coc.nvim', {'branch': 'release'}
- Plug 'yuttie/comfortable-motion.vim'
- Plug 'b3nj5m1n/kommentary', {'branch': 'main'}
- Plug 'ojroques/nvim-hardline', {'branch': 'main'}
- Plug 'kyazdani42/nvim-web-devicons'
- Plug 'akinsho/nvim-bufferline.lua'
- Plug 'akinsho/nvim-toggleterm.lua'
- Plug 'nvim-lua/popup.nvim'
- Plug 'nvim-lua/plenary.nvim'
- Plug 'nvim-telescope/telescope.nvim'
- " Git plugins
- Plug 'airblade/vim-gitgutter'
- Plug 'tpope/vim-fugitive'
- Plug 'f-person/git-blame.nvim'
- Plug 'rbong/vim-flog'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'b3nj5m1n/kommentary', {'branch': 'main'}
+  Plug 'hoob3rt/lualine.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'yuttie/comfortable-motion.vim'
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'akinsho/nvim-bufferline.lua'
+  Plug 'akinsho/nvim-toggleterm.lua'
+  Plug 'nvim-treesitter/nvim-treesitter'
+  Plug 'tpope/vim-surround'
+  " Git plugins
+  Plug 'airblade/vim-gitgutter'
+  Plug 'tpope/vim-fugitive'
+  Plug 'rbong/vim-flog'
+  Plug 'f-person/git-blame.nvim'
+  Plug 'folke/zen-mode.nvim'
 
- " Extra
- Plug 'rbgrouleff/bclose.vim'
- Plug 'christoomey/vim-tmux-navigator'
- Plug 'Kraust/floater.nvim'
- Plug 'mattn/emmet-vim'
- Plug 'davidgranstrom/nvim-markdown-preview'
- Plug 'mvolkmann/vim-react'
- Plug 'junegunn/goyo.vim'
- Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
- Plug 'ap/vim-css-color'
- Plug 'npxbr/glow.nvim', {'do': ':GlowInstall'}
- Plug 'kevinhwang91/rnvimr'
- Plug 'glepnir/dashboard-nvim'
+  " Extra
+  Plug 'rbgrouleff/bclose.vim'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'Kraust/floater.nvim'
+  Plug 'davidgranstrom/nvim-markdown-preview'
+  Plug 'mvolkmann/vim-react'
+  Plug 'junegunn/goyo.vim'
+  Plug 'ap/vim-css-color'
+  Plug 'npxbr/glow.nvim', {'do': ':GlowInstall'}
+  Plug 'kevinhwang91/rnvimr'
+  Plug 'glepnir/dashboard-nvim'
+  Plug 'bewakes/vim-rest-client'
 
- " Syntax highlighters
- Plug 'MaxMEllon/vim-jsx-pretty'
- Plug 'pangloss/vim-javascript'
- Plug 'HerringtonDarkholme/yats.vim'
- Plug 'leafgarland/typescript-vim'
- Plug 'peitalin/vim-jsx-typescript'
- Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
- Plug 'bluz71/vim-moonfly-colors'
+  " Syntax highlighters
+  Plug 'MaxMEllon/vim-jsx-pretty'
+  Plug 'pangloss/vim-javascript'
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'leafgarland/typescript-vim'
+  Plug 'peitalin/vim-jsx-typescript'
+  Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+  Plug 'bluz71/vim-moonfly-colors'
 
- " colorschemes
- Plug 'Rigellute/rigel'
- Plug 'rakr/vim-one'
- Plug 'arzg/vim-colors-xcode'
- Plug 'flrnd/candid.vim'
- Plug 'rafi/awesome-vim-colorschemes'
- Plug 'morhetz/gruvbox'
- Plug 'kaicataldo/material.vim'
- Plug 'patstockwell/vim-monokai-tasty'
- Plug 'embark-theme/vim', { 'as': 'embark' }
- Plug 'jaredgorski/SpaceCamp'
+  " colorschemes
+  Plug 'Th3Whit3Wolf/one-nvim'
+  Plug 'Rigellute/rigel'
+  Plug 'arzg/vim-colors-xcode'
+  Plug 'flrnd/candid.vim'
+  Plug 'rafi/awesome-vim-colorschemes'
+  Plug 'morhetz/gruvbox'
+  Plug 'kaicataldo/material.vim'
+  Plug 'patstockwell/vim-monokai-tasty'
+  Plug 'embark-theme/vim', { 'as': 'embark' }
+  Plug 'jaredgorski/SpaceCamp'
+  Plug 'tjdevries/colorbuddy.nvim'
+  Plug 'marko-cerovac/material.nvim'
+  Plug 'glepnir/zephyr-nvim'
+  Plug 'savq/melange'
 call plug#end()
 
 
 let &t_ut=''
 
 " Theme
-colorscheme one
+colorscheme material
 syntax on
 
 " Hide tildes for empty lines
@@ -103,7 +112,10 @@ noremap sl :bnext<CR>
 nnoremap <Leader>wq :wq<CR>
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 nnoremap Q :q<CR>
-map <Leader>d :noh<CR>
+nnoremap <Leader>qq :qa!<CR>
+map sd :noh<CR>
+map E :e<CR>
+map W :w<CR>
 map <A-w> Esc
 nmap gs :vs<CR>
 nmap sg :sp<CR>
@@ -125,18 +137,24 @@ command! Vimrc :vs $MYVIMRC
 command! -nargs=? Filter let @a='' | execute 'g/<args>/y A' | new | setlocal bt=nofile | put! a
 
 nnoremap <Leader>x :Bclose<CR>
-
-nnoremap <silent> <Leader>r :RnvimrToggle<CR>
+nnoremap <Leader>g :Flog<CR>
+nnoremap <silent> <Leader>we :RnvimrToggle<CR>
 
 let g:dashboard_default_executive ='telescope'
 let g:buffet_tab_icon = ""
 let g:buffet_modified_icon = "~"
 let g:buffet_use_devicons = 1
 let g:buffet_separator = ""
-let g:minimap_auto_start = 1
-let g:gitblame_message_template = '<summary> • <date> • <author>'
-let g:moonflyCursorColor = 1
-let g:gruvbox_contrast_dark = 'soft'
+" let g:gitblame_message_template = '<summary> • <date> • <author>'
+
+let g:material_style = 'default'
+let g:material_italic_keywords=1
+let g:material_italic_functions=1
+let g:material_italic_comments=1
+
+" let g:minimap_auto_start = 1
+" let g:moonflyCursorColor = 1
+" let g:gruvbox_contrast_dark = 'soft'
 
 vmap gc <plug>NERDCommenterToggle
 nmap gc <plug>NERDCommenterToggle
@@ -344,23 +362,51 @@ nnoremap <A-m> <cmd>lua require('telescope.builtin').git_bcommits()<cr>
 nnoremap <A-n> <cmd>lua require('telescope.builtin').git_branches()<cr>
 nnoremap <A-c> <cmd>lua require('telescope.builtin').colorscheme()<cr>
 
+let g:lualine = {
+    \'options' : {
+    \  'theme' : 'palenight',
+    \  'section_separators' : [' '],
+    \  'component_separators' : [' '],
+    \  'icons_enabled' : v:true,
+    \},
+    \'sections' : {
+    \  'lualine_a' : [ ['mode', {'upper': v:true,},], ],
+    \  'lualine_b' : [ ['branch', {'icon': '📦',}, ], ],
+    \  'lualine_c' : [ ['filename', {'file_status': v:true,},], ],
+    \  'lualine_x' : [ 'encoding', 'fileformat', 'filetype' ],
+    \  'lualine_y' : [ 'progress' ],
+    \  'lualine_z' : [ 'location'  ],
+    \},
+    \'inactive_sections' : {
+    \  'lualine_a' : [  ],
+    \  'lualine_b' : [  ],
+    \  'lualine_c' : [ 'filename' ],
+    \  'lualine_x' : [ 'location' ],
+    \  'lualine_y' : [  ],
+    \  'lualine_z' : [  ],
+    \},
+    \'extensions' : [ 'fzf' ],
+    \}
+
 " Lua plugins setup
 lua << EOF
-  require('hardline').setup {}
+  require('lualine').setup()
   require'bufferline'.setup()
   require'nvim-web-devicons'.setup{
     default = true;
   }
   require'toggleterm'.setup{
-    size = 20,
+    size = 100,
     open_mapping = [[<A-t>]],
     shade_filetypes = {},
     shade_terminals = true,
     persist_size = true,
+    direction = 'vertical',
   }
   require('telescope').setup{
    defaults = {
     prompt_prefix = "🤘 ",
    },
   }
+  require("zen-mode").setup{}
 EOF
