@@ -74,24 +74,6 @@ install_curl() {
   fi
 }
 
-# --- Install zsh
-install_zsh() {
-  if ! [ "$(command -v curl)" ]; then
-    install_curl
-  fi
-
-  log -t h2 zsh
-  if [[ $os = "debian" ]]; then
-    sudo apt -y install zsh
-  elif [[ $os = "arch" ]]; then
-    sudo pacman -Sy zsh
-  fi
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" && \
-  git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" && \
-  ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme" && \
-  cp $HOME/dotfiles/.zshrc $HOME
-}
-
 # --- Install neovim and plugs
 install_neovim() {
   log -t h2 Neovim
@@ -155,7 +137,7 @@ install_tmux() {
 install() {
   if [ -z "$1" ]
     then
-      install_curl;install_tig;install_zsh;install_tmux
+      install_curl;install_tig;install_tmux
       install_neovim;install_plug;install_node;install_powerline
       return 1
   fi
@@ -168,9 +150,6 @@ install() {
       ;;
       tig)
         install_tig
-      ;;
-      zsh)
-        install_zsh
       ;;
       tmux)
         install_tmux
