@@ -1,19 +1,19 @@
 [
     {
-         "key" :  "ctrl+h",
-         "command" :  "workbench.action.navigateLeft"
-    },    
+        "key": "alt+h",
+        "command": "workbench.action.navigateLeft"
+    },
     {
-         "key" :  "ctrl+l",
-         "command" :  "workbench.action.navigateRight"
-    },    
+        "key": "alt+l",
+        "command": "workbench.action.navigateRight"
+    },
     {
-         "key" :  "ctrl+k",
-         "command" :  "workbench.action.navigateUp"
-    },    
+        "key": "alt+k",
+        "command": "workbench.action.navigateUp"
+    },
     {
-         "key" :  "ctrl+j",
-         "command" :  "workbench.action.navigateDown"
+        "key": "alt+j",
+        "command": "workbench.action.navigateDown"
     },
     {
         "key": "alt+1",
@@ -22,5 +22,17 @@
     {
         "key": "alt+2",
         "command": "workbench.action.toggleMaximizedPanel"
+    },
+    {
+        "key": "alt+p",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "alt+o",
+        "command": "workbench.view.search"
+    },
+    {
+        "key": "alt+[",
+        "command": "workbench.view.explorer"
     }
 ]

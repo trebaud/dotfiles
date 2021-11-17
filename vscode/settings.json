@@ -1,52 +1,68 @@
 {
-  "[json]": {
-    "editor.defaultFormatter": "HookyQR.beautify"
-  },
-  "vim.visualstar": true,
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.editor.enablePreview": false,
-  "vim.normalModeKeyBindingsNonRecursive": [
-    {
-      "before": ["K"],
-      "after": ["5", "k"]
-    },
-    {
-      "before": ["J"],
-      "after": ["5", "j"]
-    },
-    {
-      "before": ["H"],
-      "commands": [
-        "workbench.action.previousEditor",
-      ]
-    },
-    {
-      "before": ["L"],
-      "commands": [
-        "workbench.action.nextEditor",
-      ]
-    },
-    {
-      "before": ["g", "q"],
-      "commands": [
-        "editor.action.referenceSearch.trigger",
-      ]
-    }
-  ],
-  "[javascript]": {
-    "editor.defaultFormatter": "HookyQR.beautify"
-  },
+  "terminal.integrated.scrollback": 10000,
   "window.zoomLevel": 1,
+  "workbench.colorTheme": "Gruvbox Dark Soft",
+  "workbench.editor.enablePreview": false,
   "workbench.colorCustomizations": {
     "editorCursor.foreground": "#f600f6",
     "activityBar.background": "#242526",
     "activityBar.foreground": "#696969",
     "statusBar.background": "#005f5f",
     "statusBar.noFolderBackground": "#005f5f",
-    "statusBar.debuggingBackground": "#005f5f"
+    "statusBar.debuggingBackground": "#005f5f",
+    "statusBar.foreground": "#000",
+    "statusBar.debuggingForeground": "#000"
   },
+  "editor.smoothScrolling": true,
+  "editor.formatOnSave": true,
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "extensions.ignoreRecommendations": true,
+  "prettier.requireConfig": true,
+  "vim.visualstar": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": ["s", "s"],
+      "after": ["*"]
+    },
+    {
+      "before": ["space", "w", "d"],
+      "commands": ["console.log.wrap.nameValue"]
+    },
+    {
+      "before": ["space", "w", "j"],
+      "commands": ["console.log.wrap.json"]
+    },
+    {
+      "before": ["s", "h"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["s", "l"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.referenceSearch.trigger"]
+    },
+    {
+      "before": ["g", "w"],
+      "commands": ["workbench.action.navigateBack"]
+    }
+  ],
   "vim.statusBarColorControl": true,
   "vim.statusBarColors.insert": ["#d8ff2b", "#000"],
   "vim.statusBarColors.normal": "#5f00af",
   "vim.statusBarColors.visual": ["#ffc0cb", "#000"]
 }
+
