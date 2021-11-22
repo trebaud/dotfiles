@@ -16,11 +16,11 @@
         "command": "workbench.action.navigateDown"
     },
     {
-        "key": "alt+1",
+        "key": "alt+t",
         "command": "workbench.action.terminal.toggleTerminal"
     },
     {
-        "key": "alt+2",
+        "key": "alt+m",
         "command": "workbench.action.toggleMaximizedPanel"
     },
     {
@@ -34,5 +34,9 @@
     {
         "key": "alt+[",
         "command": "workbench.view.explorer"
+    },
+    {
+        "key": "alt+]",
+        "command": "workbench.action.toggleSidebarVisibility"
     }
 ]
