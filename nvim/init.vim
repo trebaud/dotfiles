@@ -119,8 +119,6 @@ endif
 
 call plug#begin(data_dir . '/plugins')
 
-" source ~/.config/nvim/plugins/abolish.vim
-" source ~/.config/nvim/plugins/tmux-navigator.vim
 source ~/.config/nvim/plugins/airline.vim
 source ~/.config/nvim/plugins/arduino.vim
 source ~/.config/nvim/plugins/coc.vim
@@ -159,6 +157,7 @@ source ~/.config/nvim/plugins/vim-test.vim
 source ~/.config/nvim/plugins/visual-multi.vim
 source ~/.config/nvim/plugins/visual-star-search.vim
 source ~/.config/nvim/plugins/which-key.vim
+source ~/.config/nvim/plugins/vim-smoothie.vim
 
 call plug#end()
 doautocmd User PlugLoaded
