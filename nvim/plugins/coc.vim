@@ -10,15 +10,9 @@ let g:coc_global_extensions = [
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-pairs',
-    \ 'coc-phpls',
-    \ 'coc-php-cs-fixer',
     \ 'coc-sh',
-    \ 'coc-snippets',
-    \ 'coc-sql',
     \ 'coc-svg',
-    \ 'https://github.com/rodrigore/coc-tailwind-intellisense',
     \ 'coc-tsserver',
-    \ '@yaegassy/coc-volar',
 \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
