@@ -118,7 +118,6 @@ call plug#begin(data_dir . '/plugins')
 source ~/.config/nvim/plugins/airline.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/commentary.vim
-source ~/.config/nvim/plugins/gruvbox.vim
 source ~/.config/nvim/plugins/context-commentstring.vim
 source ~/.config/nvim/plugins/dispatch.vim
 source ~/.config/nvim/plugins/editorconfig.vim
@@ -140,7 +139,6 @@ source ~/.config/nvim/plugins/quickscope.vim
 source ~/.config/nvim/plugins/repeat.vim
 source ~/.config/nvim/plugins/rooter.vim
 source ~/.config/nvim/plugins/sayonara.vim
-source ~/.config/nvim/plugins/smooth-scroll.vim
 source ~/.config/nvim/plugins/splitjoin.vim
 source ~/.config/nvim/plugins/surround.vim
 source ~/.config/nvim/plugins/targets.vim
@@ -151,6 +149,7 @@ source ~/.config/nvim/plugins/visual-multi.vim
 source ~/.config/nvim/plugins/visual-star-search.vim
 source ~/.config/nvim/plugins/which-key.vim
 source ~/.config/nvim/plugins/vim-smoothie.vim
+source ~/.config/nvim/plugins/gruvbox.vim
 
 call plug#end()
 doautocmd User PlugLoaded
@@ -158,12 +157,16 @@ doautocmd User PlugLoaded
 colorscheme gruvbox
 
 "--------------------------------------------------------------------------
-" Miscellaneous
+" Terminal settings
 "--------------------------------------------------------------------------
 
-augroup FileTypeOverrides
-    autocmd!
-    " Use '//' instead of '/* */' comments
-    autocmd TermOpen * setlocal nospell
-augroup END
+tnoremap <A-w> <C-\><C-n>
+command! -nargs=* T vsplit | terminal <args>
+autocmd TermOpen * startinsert
+
+" augroup FileTypeOverrides
+"     autocmd!
+"     " Use '//' instead of '/* */' comments
+"     autocmd TermOpen * setlocal nospell
+" augroup END
 
