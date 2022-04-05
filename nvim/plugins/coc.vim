@@ -13,6 +13,7 @@ let g:coc_global_extensions = [
     \ 'coc-sh',
     \ 'coc-svg',
     \ 'coc-tsserver',
+    \ 'coc-prettier',
 \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -77,6 +78,7 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
+
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
