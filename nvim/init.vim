@@ -92,7 +92,13 @@ nnoremap N Nzzzv
 nnoremap J mzJ`z
 
 " Use Ctrl-c for copy 
-map <C-c> "+y
+" nmap <c-c> "+y
+vmap <c-c> "+y
+nmap <c-v> "+p
+inoremap <c-v> <c-r>+
+cnoremap <c-v> <c-r>+
+" use <c-r> to insert original character without triggering things like auto-pairs
+inoremap <c-r> <c-v>
 
 " Open the current file in the default program
 nmap <leader>x :!xdg-open %<cr><cr>
@@ -148,3 +154,10 @@ colorscheme gruvbox
 tnoremap <A-w> <C-\><C-n>
 command! -nargs=* T vsplit | terminal <args>
 autocmd TermOpen * startinsert
+
+
+"--------------------------------------------------------------------------
+" Neovide settings
+"--------------------------------------------------------------------------
+let g:neovide_cursor_vfx_mode = "railgun"
+let g:neovide_transparency = 0.96
