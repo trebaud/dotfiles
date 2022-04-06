@@ -9,11 +9,13 @@ let g:coc_global_extensions = [
     \ 'coc-git',
     \ 'coc-html',
     \ 'coc-json',
+    \ 'coc-rls',
     \ 'coc-pairs',
     \ 'coc-sh',
     \ 'coc-svg',
     \ 'coc-tsserver',
     \ 'coc-prettier',
+    \ 'coc-explorer',
 \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -117,3 +119,9 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 nmap <leader>l :CocFzfList<cr>
+
+" Explorer
+nmap <space>ef <Cmd>CocCommand explorer --toggle<CR>
+
+" List all presets
+nmap <space>el <Cmd>CocList explPresets<CR>

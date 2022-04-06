@@ -110,45 +110,30 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-nnoremap <Leader>ef "ayiwoconsole.log('💩💩💩💩💩\n<C-R>a:', <C-R>a);<Esc>
-nnoremap <Leader>er "ayiwoconsole.log(`💩💩💩💩💩\n<C-R>a:${JSON.stringify(<C-R>a, undefined, 2)}`);<Esc>
+nnoremap <Leader>wd "ayiwoconsole.log('💩💩💩💩💩\n<C-R>a:', <C-R>a);<Esc>
+nnoremap <Leader>we "ayiwoconsole.log(`💩💩💩💩💩\n<C-R>a:${JSON.stringify(<C-R>a, undefined, 2)}`);<Esc>
 
 call plug#begin(data_dir . '/plugins')
 
 source ~/.config/nvim/plugins/airline.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/commentary.vim
-source ~/.config/nvim/plugins/context-commentstring.vim
-source ~/.config/nvim/plugins/dispatch.vim
-source ~/.config/nvim/plugins/editorconfig.vim
 source ~/.config/nvim/plugins/eunuch.vim
-source ~/.config/nvim/plugins/exchange.vim
-source ~/.config/nvim/plugins/firenvim.vim
 source ~/.config/nvim/plugins/floaterm.vim
 source ~/.config/nvim/plugins/fugitive.vim
 source ~/.config/nvim/plugins/fzf.vim
 source ~/.config/nvim/plugins/heritage.vim
 source ~/.config/nvim/plugins/lastplace.vim
-source ~/.config/nvim/plugins/lion.vim
 source ~/.config/nvim/plugins/markdown-preview.vim
-source ~/.config/nvim/plugins/nerdtree.vim
 source ~/.config/nvim/plugins/pasta.vim
 source ~/.config/nvim/plugins/peekaboo.vim
 source ~/.config/nvim/plugins/polyglot.vim
-source ~/.config/nvim/plugins/quickscope.vim
-source ~/.config/nvim/plugins/repeat.vim
 source ~/.config/nvim/plugins/rooter.vim
 source ~/.config/nvim/plugins/sayonara.vim
 source ~/.config/nvim/plugins/splitjoin.vim
 source ~/.config/nvim/plugins/surround.vim
-source ~/.config/nvim/plugins/targets.vim
-source ~/.config/nvim/plugins/textobj-xmlattr.vim
-source ~/.config/nvim/plugins/unimpaired.vim
 source ~/.config/nvim/plugins/vim-test.vim
-source ~/.config/nvim/plugins/visual-multi.vim
-source ~/.config/nvim/plugins/visual-star-search.vim
 source ~/.config/nvim/plugins/which-key.vim
-source ~/.config/nvim/plugins/vim-smoothie.vim
 source ~/.config/nvim/plugins/gruvbox.vim
 
 call plug#end()
@@ -163,10 +148,3 @@ colorscheme gruvbox
 tnoremap <A-w> <C-\><C-n>
 command! -nargs=* T vsplit | terminal <args>
 autocmd TermOpen * startinsert
-
-" augroup FileTypeOverrides
-"     autocmd!
-"     " Use '//' instead of '/* */' comments
-"     autocmd TermOpen * setlocal nospell
-" augroup END
-
