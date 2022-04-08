@@ -124,6 +124,7 @@ call plug#begin(data_dir . '/plugins')
 source ~/.config/nvim/plugins/airline.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/commentary.vim
+source ~/.config/nvim/plugins/colorschemes.vim
 source ~/.config/nvim/plugins/eunuch.vim
 source ~/.config/nvim/plugins/floaterm.vim
 source ~/.config/nvim/plugins/fugitive.vim
@@ -140,12 +141,13 @@ source ~/.config/nvim/plugins/splitjoin.vim
 source ~/.config/nvim/plugins/surround.vim
 source ~/.config/nvim/plugins/vim-test.vim
 source ~/.config/nvim/plugins/which-key.vim
-source ~/.config/nvim/plugins/gruvbox.vim
 
 call plug#end()
 doautocmd User PlugLoaded
 
-colorscheme gruvbox
+colorscheme onedark
+
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete
 
 "--------------------------------------------------------------------------
 " Terminal settings
@@ -160,4 +162,4 @@ autocmd TermOpen * startinsert
 " Neovide settings
 "--------------------------------------------------------------------------
 let g:neovide_cursor_vfx_mode = "railgun"
-let g:neovide_transparency = 0.96
+let g:neovide_transparency = 0.95

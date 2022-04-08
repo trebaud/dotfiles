@@ -1,0 +1,7 @@
+Plug 'morhetz/gruvbox'
+Plug 'folke/tokyonight.nvim'
+Plug 'jacoborus/tender.vim'
+Plug 'patstockwell/vim-monokai-tasty'
+Plug 'elvessousa/sobrio'
+Plug 'marko-cerovac/material.nvim'
+Plug 'joshdick/onedark.vim'
