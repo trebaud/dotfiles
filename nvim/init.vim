@@ -146,7 +146,17 @@ source ~/.config/nvim/plugins/which-key.vim
 call plug#end()
 doautocmd User PlugLoaded
 
+"--------------------------------------------------------------------------
+" Styling settings
+"--------------------------------------------------------------------------
+"
 colorscheme gruvbox
+highlight Cursor guifg=white guibg=magenta
+highlight iCursor guifg=white guibg=cyan
+set guicursor=n-v-c:block-Cursor
+set guicursor+=i:ver100-iCursor
+set guicursor+=n-v-c:blinkon0
+set guicursor+=i:blinkwait10
 
 "--------------------------------------------------------------------------
 " Terminal settings
@@ -155,6 +165,7 @@ colorscheme gruvbox
 tnoremap <A-w> <C-\><C-n>
 command! -nargs=* T vsplit | terminal <args>
 autocmd TermOpen * startinsert
+
 
 "--------------------------------------------------------------------------
 " Neovide settings
