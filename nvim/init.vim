@@ -93,10 +93,10 @@ nnoremap J mzJ`z
 
 " Use Ctrl-c for copy 
 " nmap <c-c> "+y
-vmap <c-c> "+y
-nmap <c-v> "+p
-inoremap <c-v> <c-r>+
-cnoremap <c-v> <c-r>+
+vmap <A-c> "+y
+nmap <A-v> "+p
+inoremap <A-v> <c-r>+
+cnoremap <A-v> <c-r>+
 " use <c-r> to insert original character without triggering things like auto-pairs
 inoremap <c-r> <c-v>
 
@@ -129,6 +129,7 @@ source ~/.config/nvim/plugins/eunuch.vim
 source ~/.config/nvim/plugins/floaterm.vim
 source ~/.config/nvim/plugins/fugitive.vim
 source ~/.config/nvim/plugins/fzf.vim
+source ~/.config/nvim/plugins/goyo.vim
 source ~/.config/nvim/plugins/heritage.vim
 source ~/.config/nvim/plugins/lastplace.vim
 source ~/.config/nvim/plugins/markdown-preview.vim
@@ -145,9 +146,7 @@ source ~/.config/nvim/plugins/which-key.vim
 call plug#end()
 doautocmd User PlugLoaded
 
-colorscheme onedark
-
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete
+colorscheme gruvbox
 
 "--------------------------------------------------------------------------
 " Terminal settings
@@ -157,9 +156,7 @@ tnoremap <A-w> <C-\><C-n>
 command! -nargs=* T vsplit | terminal <args>
 autocmd TermOpen * startinsert
 
-
 "--------------------------------------------------------------------------
 " Neovide settings
 "--------------------------------------------------------------------------
 let g:neovide_cursor_vfx_mode = "railgun"
-let g:neovide_transparency = 0.95

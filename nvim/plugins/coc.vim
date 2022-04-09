@@ -16,6 +16,7 @@ let g:coc_global_extensions = [
     \ 'coc-tsserver',
     \ 'coc-prettier',
     \ 'coc-explorer',
+    \ 'coc-emoji'
 \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
