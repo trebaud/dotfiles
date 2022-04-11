@@ -35,6 +35,7 @@ set redrawtime=10000 " Allow more time for loading syntax on large files
 set nospell
 set noerrorbells
 set noswapfile
+set splitbelow
 
 "--------------------------------------------------------------------------
 " Key maps
@@ -163,8 +164,10 @@ set guicursor+=i:blinkwait10
 "--------------------------------------------------------------------------
 
 tnoremap <A-w> <C-\><C-n>
-command! -nargs=* T vsplit | terminal <args>
+command! -nargs=* T split | terminal <args>
 autocmd TermOpen * startinsert
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 
 "--------------------------------------------------------------------------
