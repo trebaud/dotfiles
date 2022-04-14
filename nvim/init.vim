@@ -124,8 +124,8 @@ call plug#begin(data_dir . '/plugins')
 
 source ~/.config/nvim/plugins/airline.vim
 source ~/.config/nvim/plugins/coc.vim
-source ~/.config/nvim/plugins/commentary.vim
 source ~/.config/nvim/plugins/colorschemes.vim
+source ~/.config/nvim/plugins/commentary.vim
 source ~/.config/nvim/plugins/eunuch.vim
 source ~/.config/nvim/plugins/floaterm.vim
 source ~/.config/nvim/plugins/fugitive.vim
@@ -137,10 +137,13 @@ source ~/.config/nvim/plugins/markdown-preview.vim
 source ~/.config/nvim/plugins/pasta.vim
 source ~/.config/nvim/plugins/peekaboo.vim
 source ~/.config/nvim/plugins/polyglot.vim
+source ~/.config/nvim/plugins/ranger.vim
 source ~/.config/nvim/plugins/rooter.vim
 source ~/.config/nvim/plugins/sayonara.vim
 source ~/.config/nvim/plugins/splitjoin.vim
+source ~/.config/nvim/plugins/startify.vim
 source ~/.config/nvim/plugins/surround.vim
+source ~/.config/nvim/plugins/tig-explorer.vim
 source ~/.config/nvim/plugins/vim-test.vim
 source ~/.config/nvim/plugins/which-key.vim
 
