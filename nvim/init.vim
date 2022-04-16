@@ -59,8 +59,8 @@ nmap <A-k> <C-w>k
 nmap <A-l> <C-w>l
 
 " Switch to left and right buffers
-nnoremap sh :bprev<CR>
-noremap sl :bnext<CR>
+nnoremap <Tab> :bprev<CR>
+nnoremap <leader-Tab> :bnext<CR>
 
 " Remap star search
 nmap ss <kMultiply>
