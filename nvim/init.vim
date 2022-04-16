@@ -146,17 +146,33 @@ source ~/.config/nvim/plugins/surround.vim
 source ~/.config/nvim/plugins/tig-explorer.vim
 source ~/.config/nvim/plugins/vim-test.vim
 source ~/.config/nvim/plugins/which-key.vim
+source ~/.config/nvim/plugins/neogit.vim
+source ~/.config/nvim/plugins/diffview.vim
 
 call plug#end()
 doautocmd User PlugLoaded
 
 "--------------------------------------------------------------------------
-" Styling settings
+" LUA settings
 "--------------------------------------------------------------------------
-"
+
+lua << EOF
+require("neogit").setup {
+ disable_commit_confirmation = true,
+ integrations = {
+  diffview = true
+ }
+}
+EOF
+
+"--------------------------------------------------------------------------
+" General styling
+"--------------------------------------------------------------------------
+
 colorscheme gruvbox
 highlight Cursor guifg=white guibg=magenta
 highlight iCursor guifg=white guibg=cyan
+
 set guicursor=n-v-c:block-Cursor
 set guicursor+=i:ver100-iCursor
 set guicursor+=n-v-c:blinkon0
@@ -171,7 +187,6 @@ command! -nargs=* T split | terminal <args>
 autocmd TermOpen * startinsert
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
-
 
 "--------------------------------------------------------------------------
 " Neovide settings
