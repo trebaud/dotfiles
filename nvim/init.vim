@@ -38,7 +38,7 @@ set noswapfile
 set splitbelow
 
 "--------------------------------------------------------------------------
-" Key maps
+" Key mappings
 "--------------------------------------------------------------------------
 
 let mapleader = "\<space>"
@@ -106,6 +106,9 @@ nmap <leader>x :!xdg-open %<cr><cr>
 
 cmap w!! %!sudo tee > /dev/null %
 
+nnoremap <Leader>wd "ayiwoconsole.log('💩💩💩💩💩\n<C-R>a:', <C-R>a);<Esc>
+nnoremap <Leader>we "ayiwoconsole.log(`💩💩💩💩💩\n<C-R>a:${JSON.stringify(<C-R>a, undefined, 2)}`);<Esc>
+
 "--------------------------------------------------------------------------
 " Plugins
 "--------------------------------------------------------------------------
@@ -117,15 +120,13 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-nnoremap <Leader>wd "ayiwoconsole.log('💩💩💩💩💩\n<C-R>a:', <C-R>a);<Esc>
-nnoremap <Leader>we "ayiwoconsole.log(`💩💩💩💩💩\n<C-R>a:${JSON.stringify(<C-R>a, undefined, 2)}`);<Esc>
-
 call plug#begin(data_dir . '/plugins')
 
 source ~/.config/nvim/plugins/airline.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/colorschemes.vim
 source ~/.config/nvim/plugins/commentary.vim
+source ~/.config/nvim/plugins/diffview.vim
 source ~/.config/nvim/plugins/eunuch.vim
 source ~/.config/nvim/plugins/floaterm.vim
 source ~/.config/nvim/plugins/fugitive.vim
@@ -134,6 +135,8 @@ source ~/.config/nvim/plugins/goyo.vim
 source ~/.config/nvim/plugins/heritage.vim
 source ~/.config/nvim/plugins/lastplace.vim
 source ~/.config/nvim/plugins/markdown-preview.vim
+source ~/.config/nvim/plugins/neogit.vim
+source ~/.config/nvim/plugins/nvim-web-devicons.vim
 source ~/.config/nvim/plugins/pasta.vim
 source ~/.config/nvim/plugins/peekaboo.vim
 source ~/.config/nvim/plugins/polyglot.vim
@@ -146,8 +149,6 @@ source ~/.config/nvim/plugins/surround.vim
 source ~/.config/nvim/plugins/tig-explorer.vim
 source ~/.config/nvim/plugins/vim-test.vim
 source ~/.config/nvim/plugins/which-key.vim
-source ~/.config/nvim/plugins/neogit.vim
-source ~/.config/nvim/plugins/diffview.vim
 
 call plug#end()
 doautocmd User PlugLoaded
@@ -162,6 +163,12 @@ require("neogit").setup {
  integrations = {
   diffview = true
  }
+}
+
+require'nvim-web-devicons'.setup {
+-- globally enable default icons (default to false)
+-- will get overriden by `get_icons` option
+ default = true;
 }
 EOF
 
