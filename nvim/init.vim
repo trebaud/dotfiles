@@ -49,6 +49,7 @@ nmap <leader>vr :source ~/.config/nvim/init.vim<cr>
 
 nmap <leader>k :nohlsearch<CR>
 nmap <leader>Q :bufdo bdelete<cr>
+nmap Q :q<cr>
 
 nmap gs :vs<CR>
 nmap sg :sp<CR>
@@ -170,13 +171,23 @@ require'nvim-web-devicons'.setup {
 -- will get overriden by `get_icons` option
  default = true;
 }
+
+require('nightfox').setup({
+  options = {
+    styles = {
+      comments = "italic",
+      keywords = "bold",
+      types = "italic,bold",
+    }
+  }
+})
 EOF
 
 "--------------------------------------------------------------------------
 " General styling
 "--------------------------------------------------------------------------
 
-colorscheme gruvbox
+colorscheme nordfox
 highlight Cursor guifg=white guibg=magenta
 highlight iCursor guifg=white guibg=cyan
 
