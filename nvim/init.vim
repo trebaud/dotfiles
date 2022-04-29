@@ -60,8 +60,8 @@ nmap <A-k> <C-w>k
 nmap <A-l> <C-w>l
 
 " Switch to left and right buffers
-nnoremap <Tab> :bprev<CR>
-nnoremap <leader-Tab> :bnext<CR>
+nnoremap <A-b> :bprev<CR>
+nnoremap <A-n> :bnext<CR>
 
 " Remap star search
 nmap ss <kMultiply>
@@ -107,8 +107,8 @@ nmap <leader>x :!xdg-open %<cr><cr>
 
 cmap w!! %!sudo tee > /dev/null %
 
-nnoremap <Leader>wd "ayiwoconsole.log('💩💩💩💩💩\n<C-R>a:', <C-R>a);<Esc>
-nnoremap <Leader>we "ayiwoconsole.log(`💩💩💩💩💩\n<C-R>a:${JSON.stringify(<C-R>a, undefined, 2)}`);<Esc>
+nnoremap <Leader>wd "ayiwoconsole.log('#################\n<C-R>a:', <C-R>a);<Esc>
+nnoremap <Leader>we "ayiwoconsole.log(`#################\n<C-R>a:${JSON.stringify(<C-R>a, undefined, 2)}`);<Esc>
 
 "--------------------------------------------------------------------------
 " Plugins
