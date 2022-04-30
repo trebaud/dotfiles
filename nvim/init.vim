@@ -20,7 +20,7 @@ set wildmode=longest:full,full
 set nowrap
 set list
 set listchars=tab:▸\ ,trail:·
-set mouse=a
+set mouse-=a
 set scrolloff=8
 set sidescrolloff=8
 set nojoinspaces
@@ -60,8 +60,8 @@ nmap <A-k> <C-w>k
 nmap <A-l> <C-w>l
 
 " Switch to left and right buffers
-nnoremap <Tab> :bprev<CR>
-nnoremap <leader-Tab> :bnext<CR>
+nnoremap <A-b> :bprev<CR>
+nnoremap <A-n> :bnext<CR>
 
 " Remap star search
 nmap ss <kMultiply>
@@ -202,6 +202,7 @@ set guicursor+=i:blinkwait10
 
 tnoremap <A-w> <C-\><C-n>
 command! -nargs=* T split | terminal <args>
+map <Leader>tt :T<cr>
 autocmd TermOpen * startinsert
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
