@@ -36,6 +36,9 @@ set nospell
 set noerrorbells
 set noswapfile
 set splitbelow
+" Removes pipes to separate splits
+set fillchars+=vert:\ 
+
 
 "--------------------------------------------------------------------------
 " Key mappings
@@ -46,6 +49,11 @@ let mapleader = "\<space>"
 nmap <leader>ve :edit ~/.config/nvim/init.vim<cr>
 nmap <leader>vc :edit ~/.config/nvim/coc-settings.json<cr>
 nmap <leader>vr :source ~/.config/nvim/init.vim<cr>
+
+nnoremap <silent> <C-Left> :vertical resize +3<CR>
+nnoremap <silent> <C-Right> :vertical resize -3<CR>
+nnoremap <silent> <C-Up> :resize +3<CR>
+nnoremap <silent> <C-Down> :resize -3<CR>
 
 nmap <leader>k :nohlsearch<CR>
 nmap <leader>Q :bufdo bdelete<cr>
@@ -201,10 +209,9 @@ set guicursor+=i:blinkwait10
 "--------------------------------------------------------------------------
 
 tnoremap <A-w> <C-\><C-n>
-command! -nargs=* T split | terminal <args>
+command! -nargs=* SpitTerminal split | terminal <args>
+command! -nargs=* VsplitTerminal vsplit | terminal <args>
 autocmd TermOpen * startinsert
-nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 
 "--------------------------------------------------------------------------
 " Neovide settings
