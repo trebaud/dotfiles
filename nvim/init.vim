@@ -131,7 +131,6 @@ endif
 
 call plug#begin(data_dir . '/plugins')
 
-source ~/.config/nvim/plugins/airline.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/colorschemes.vim
 source ~/.config/nvim/plugins/commentary.vim
@@ -140,6 +139,7 @@ source ~/.config/nvim/plugins/eunuch.vim
 source ~/.config/nvim/plugins/floaterm.vim
 source ~/.config/nvim/plugins/fugitive.vim
 source ~/.config/nvim/plugins/fzf.vim
+source ~/.config/nvim/plugins/lualine.vim
 source ~/.config/nvim/plugins/goyo.vim
 source ~/.config/nvim/plugins/heritage.vim
 source ~/.config/nvim/plugins/lastplace.vim
@@ -180,22 +180,14 @@ require'nvim-web-devicons'.setup {
  default = true;
 }
 
-require('nightfox').setup({
-  options = {
-    styles = {
-      comments = "italic",
-      keywords = "bold",
-      types = "italic,bold",
-    }
-  }
-})
+require('lualine').setup()
 EOF
 
 "--------------------------------------------------------------------------
 " General styling
 "--------------------------------------------------------------------------
 
-colorscheme nordfox
+colorscheme vim-monokai-tasty
 highlight Cursor guifg=white guibg=magenta
 highlight iCursor guifg=white guibg=cyan
 
@@ -209,7 +201,7 @@ set guicursor+=i:blinkwait10
 "--------------------------------------------------------------------------
 
 tnoremap <A-w> <C-\><C-n>
-command! -nargs=* SpitTerminal split | terminal <args>
+command! -nargs=* SplitTerminal split | terminal <args>
 command! -nargs=* VsplitTerminal vsplit | terminal <args>
 autocmd TermOpen * startinsert
 
@@ -217,3 +209,6 @@ autocmd TermOpen * startinsert
 " Neovide settings
 "--------------------------------------------------------------------------
 let g:neovide_cursor_vfx_mode = "railgun"
+let g:neovide_window_floating_opacity = 0.85
+let g:neovide_transparency = 0.9
+let g:neovide_floating_blur = 0.8
