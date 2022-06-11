@@ -10,6 +10,7 @@ let g:coc_global_extensions = [
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-rls',
+    \ 'coc-rust-analyzer',
     \ 'coc-pairs',
     \ 'coc-sh',
     \ 'coc-svg',

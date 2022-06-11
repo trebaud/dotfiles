@@ -58,6 +58,7 @@ nnoremap <silent> <C-Down> :resize -3<CR>
 nmap <leader>k :nohlsearch<CR>
 nmap <leader>Q :bufdo bdelete<cr>
 nmap Q :q<cr>
+nmap W :w<cr>
 
 nmap gs :vs<CR>
 nmap sg :sp<CR>
@@ -187,7 +188,7 @@ EOF
 " General styling
 "--------------------------------------------------------------------------
 
-colorscheme vim-monokai-tasty
+colorscheme gruvbox
 highlight Cursor guifg=white guibg=magenta
 highlight iCursor guifg=white guibg=cyan
 
@@ -204,6 +205,7 @@ tnoremap <A-w> <C-\><C-n>
 command! -nargs=* SplitTerminal split | terminal <args>
 command! -nargs=* VsplitTerminal vsplit | terminal <args>
 autocmd TermOpen * startinsert
+nmap T :SplitTerminal<cr>
 
 "--------------------------------------------------------------------------
 " Neovide settings
