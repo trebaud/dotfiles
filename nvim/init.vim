@@ -8,7 +8,6 @@ set shiftwidth=4
 set tabstop=4
 set hidden
 set signcolumn=yes:2
-set relativenumber
 set number
 set termguicolors
 set undofile
@@ -57,8 +56,7 @@ nnoremap <silent> <C-Down> :resize -3<CR>
 
 nmap <leader>k :nohlsearch<CR>
 nmap <leader>Q :bufdo bdelete<cr>
-nmap Q :q<cr>
-nmap W :w<cr>
+nmap <leader>ww :w<cr>
 
 nmap gs :vs<CR>
 nmap sg :sp<CR>
@@ -146,6 +144,7 @@ source ~/.config/nvim/plugins/heritage.vim
 source ~/.config/nvim/plugins/lastplace.vim
 source ~/.config/nvim/plugins/markdown-preview.vim
 source ~/.config/nvim/plugins/neogit.vim
+source ~/.config/nvim/plugins/nvim-blame-line.vim
 source ~/.config/nvim/plugins/nvim-web-devicons.vim
 source ~/.config/nvim/plugins/pasta.vim
 source ~/.config/nvim/plugins/peekaboo.vim
