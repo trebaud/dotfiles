@@ -13,7 +13,6 @@ set termguicolors
 set undofile
 set spell
 set title
-set ignorecase
 set smartcase
 set wildmode=longest:full,full
 set nowrap
@@ -72,6 +71,9 @@ nnoremap <A-n> :bnext<CR>
 
 " Remap star search
 nmap ss <kMultiply>
+
+"Paste in visual mode without copying
+xnoremap p pgvy
 
 " Allow gf to open non-existent files
 map gf :edit <cfile><cr>
