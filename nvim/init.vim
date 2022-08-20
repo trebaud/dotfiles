@@ -140,13 +140,11 @@ source ~/.config/nvim/plugins/eunuch.vim
 source ~/.config/nvim/plugins/floaterm.vim
 source ~/.config/nvim/plugins/fugitive.vim
 source ~/.config/nvim/plugins/fzf.vim
-source ~/.config/nvim/plugins/lualine.vim
 source ~/.config/nvim/plugins/goyo.vim
 source ~/.config/nvim/plugins/heritage.vim
 source ~/.config/nvim/plugins/lastplace.vim
 source ~/.config/nvim/plugins/markdown-preview.vim
 source ~/.config/nvim/plugins/neogit.vim
-source ~/.config/nvim/plugins/nvim-blame-line.vim
 source ~/.config/nvim/plugins/nvim-web-devicons.vim
 source ~/.config/nvim/plugins/pasta.vim
 source ~/.config/nvim/plugins/peekaboo.vim
@@ -160,6 +158,8 @@ source ~/.config/nvim/plugins/surround.vim
 source ~/.config/nvim/plugins/tig-explorer.vim
 source ~/.config/nvim/plugins/vim-test.vim
 source ~/.config/nvim/plugins/which-key.vim
+source ~/.config/nvim/plugins/vim-pencil.vim
+source ~/.config/nvim/plugins/lightline.vim
 
 call plug#end()
 doautocmd User PlugLoaded
@@ -181,8 +181,6 @@ require'nvim-web-devicons'.setup {
 -- will get overriden by `get_icons` option
  default = true;
 }
-
-require('lualine').setup()
 EOF
 
 "--------------------------------------------------------------------------
