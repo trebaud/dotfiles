@@ -160,6 +160,8 @@ source ~/.config/nvim/plugins/vim-test.vim
 source ~/.config/nvim/plugins/which-key.vim
 source ~/.config/nvim/plugins/vim-pencil.vim
 source ~/.config/nvim/plugins/lightline.vim
+source ~/.config/nvim/plugins/spacecamp.vim
+source ~/.config/nvim/plugins/monokai.vim
 
 call plug#end()
 doautocmd User PlugLoaded
@@ -187,7 +189,7 @@ EOF
 " General styling
 "--------------------------------------------------------------------------
 
-colorscheme gruvbox
+colorscheme monokai_pro
 highlight Cursor guifg=white guibg=magenta
 highlight iCursor guifg=white guibg=cyan
 

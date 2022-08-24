@@ -1,0 +1,1 @@
+Plug 'tanvirtin/monokai.nvim'
