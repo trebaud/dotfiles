@@ -143,6 +143,7 @@ source ~/.config/nvim/plugins/fzf.vim
 source ~/.config/nvim/plugins/goyo.vim
 source ~/.config/nvim/plugins/heritage.vim
 source ~/.config/nvim/plugins/lastplace.vim
+source ~/.config/nvim/plugins/lightline.vim
 source ~/.config/nvim/plugins/markdown-preview.vim
 source ~/.config/nvim/plugins/neogit.vim
 source ~/.config/nvim/plugins/nvim-web-devicons.vim
@@ -156,10 +157,9 @@ source ~/.config/nvim/plugins/splitjoin.vim
 source ~/.config/nvim/plugins/startify.vim
 source ~/.config/nvim/plugins/surround.vim
 source ~/.config/nvim/plugins/tig-explorer.vim
+source ~/.config/nvim/plugins/vim-pencil.vim
 source ~/.config/nvim/plugins/vim-test.vim
 source ~/.config/nvim/plugins/which-key.vim
-source ~/.config/nvim/plugins/vim-pencil.vim
-source ~/.config/nvim/plugins/lightline.vim
 
 call plug#end()
 doautocmd User PlugLoaded
@@ -186,7 +186,6 @@ EOF
 "--------------------------------------------------------------------------
 " General styling
 "--------------------------------------------------------------------------
-
 colorscheme sonokai
 highlight Cursor guifg=white guibg=magenta
 highlight iCursor guifg=white guibg=cyan
@@ -199,7 +198,6 @@ set guicursor+=i:blinkwait10
 "--------------------------------------------------------------------------
 " Terminal settings
 "--------------------------------------------------------------------------
-
 tnoremap <A-w> <C-\><C-n>
 command! -nargs=* SplitTerminal split | terminal <args>
 command! -nargs=* VsplitTerminal vsplit | terminal <args>
