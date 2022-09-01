@@ -209,6 +209,13 @@ nmap T :SplitTerminal<cr>
 "--------------------------------------------------------------------------
 " Neovide settings
 "--------------------------------------------------------------------------
-let g:neovide_cursor_vfx_mode = "railgun"
-let g:neovide_window_floating_opacity = 0.85
-let g:neovide_floating_blur = 0.8
+if exists('g:neovide')
+    set guifont=FiraCode\ Nerd\ Font:h16
+    let g:neovide_input_use_logo=v:true
+    let g:neovide_remember_window_size = v:true
+    let g:neovide_cursor_trail_length=0
+    let g:neovide_cursor_animation_length=0
+    let g:neovide_cursor_vfx_mode = "railgun"
+    let g:neovide_window_floating_opacity = 0.85
+    let g:neovide_floating_blur = 0.8
+endif
