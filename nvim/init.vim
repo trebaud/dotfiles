@@ -11,7 +11,6 @@ set signcolumn=yes:2
 set number
 set termguicolors
 set undofile
-set spell
 set title
 set smartcase
 set wildmode=longest:full,full
@@ -136,29 +135,27 @@ source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/colorschemes.vim
 source ~/.config/nvim/plugins/commentary.vim
 source ~/.config/nvim/plugins/diffview.vim
-source ~/.config/nvim/plugins/eunuch.vim
 source ~/.config/nvim/plugins/floaterm.vim
 source ~/.config/nvim/plugins/fugitive.vim
 source ~/.config/nvim/plugins/fzf.vim
 source ~/.config/nvim/plugins/goyo.vim
-source ~/.config/nvim/plugins/heritage.vim
 source ~/.config/nvim/plugins/lastplace.vim
-source ~/.config/nvim/plugins/lightline.vim
+source ~/.config/nvim/plugins/lualine.vim
 source ~/.config/nvim/plugins/markdown-preview.vim
 source ~/.config/nvim/plugins/neogit.vim
 source ~/.config/nvim/plugins/nvim-web-devicons.vim
-source ~/.config/nvim/plugins/pasta.vim
-source ~/.config/nvim/plugins/peekaboo.vim
+source ~/.config/nvim/plugins/peekaboo.vim " shows content of registers
 source ~/.config/nvim/plugins/polyglot.vim
 source ~/.config/nvim/plugins/ranger.vim
 source ~/.config/nvim/plugins/rooter.vim
 source ~/.config/nvim/plugins/sayonara.vim
 source ~/.config/nvim/plugins/splitjoin.vim
-source ~/.config/nvim/plugins/startify.vim
+source ~/.config/nvim/plugins/staline.vim
+source ~/.config/nvim/plugins/startup.vim
 source ~/.config/nvim/plugins/surround.vim
 source ~/.config/nvim/plugins/tig-explorer.vim
+source ~/.config/nvim/plugins/toggleterm.vim
 source ~/.config/nvim/plugins/vim-pencil.vim
-source ~/.config/nvim/plugins/vim-test.vim
 source ~/.config/nvim/plugins/which-key.vim
 
 call plug#end()
@@ -181,6 +178,12 @@ require'nvim-web-devicons'.setup {
 -- will get overriden by `get_icons` option
  default = true;
 }
+
+require("startup").setup({theme = "dashboard"})
+
+require('lualine').setup()
+
+require("toggleterm").setup{}
 EOF
 
 "--------------------------------------------------------------------------
@@ -209,11 +212,12 @@ nmap T :SplitTerminal<cr>
 "--------------------------------------------------------------------------
 if exists('g:neovide')
     set guifont=FiraCode\ Nerd\ Font:h16
-    let g:neovide_input_use_logo=v:true
+    let g:neovide_input_use_logo = v:true
     let g:neovide_remember_window_size = v:true
-    let g:neovide_cursor_trail_length=0
-    let g:neovide_cursor_animation_length=0
+    let g:neovide_cursor_trail_length = 0
+    let g:neovide_cursor_animation_length = 0
     let g:neovide_cursor_vfx_mode = "railgun"
     let g:neovide_window_floating_opacity = 0.85
     let g:neovide_floating_blur = 0.8
+    let g:neovide_fullscreen = v:true
 endif
