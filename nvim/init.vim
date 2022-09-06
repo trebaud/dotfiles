@@ -176,7 +176,6 @@ require("neogit").setup {
 require'nvim-web-devicons'.setup {
  default = true;
 }
-
 require "staline".setup {
   sections = {
     left = { '  ', 'mode', ' ', 'branch', ' ', 'lsp' },
@@ -195,7 +194,7 @@ require "staline".setup {
     branch_symbol = " "
     }
   }
-
+require("startup").setup({theme = "dashboard"})
 require("toggleterm").setup{}
 require("bufferline").setup{}
 EOF
