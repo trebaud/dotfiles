@@ -131,6 +131,7 @@ endif
 
 call plug#begin(data_dir . '/plugins')
 
+source ~/.config/nvim/plugins/bufferline.vim
 source ~/.config/nvim/plugins/coc.vim
 source ~/.config/nvim/plugins/colorschemes.vim
 source ~/.config/nvim/plugins/commentary.vim
@@ -172,18 +173,31 @@ require("neogit").setup {
   diffview = true
  }
 }
-
 require'nvim-web-devicons'.setup {
--- globally enable default icons (default to false)
--- will get overriden by `get_icons` option
  default = true;
 }
 
-require("startup").setup({theme = "dashboard"})
-
-require('lualine').setup()
+require "staline".setup {
+  sections = {
+    left = { '  ', 'mode', ' ', 'branch', ' ', 'lsp' },
+    mid = {},
+    right = {'file_name', 'line_column' }
+    },
+  mode_colors = {
+    i = "#d4be98",
+    n = "#84a598",
+    c = "#8fbf7f",
+    v = "#fc802d",
+    },
+  defaults = {
+    true_colors = true,
+    line_column = " [%l/%L] :%c  ",
+    branch_symbol = " "
+    }
+  }
 
 require("toggleterm").setup{}
+require("bufferline").setup{}
 EOF
 
 "--------------------------------------------------------------------------
