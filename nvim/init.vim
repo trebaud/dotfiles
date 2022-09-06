@@ -143,6 +143,7 @@ source ~/.config/nvim/plugins/goyo.vim
 source ~/.config/nvim/plugins/lastplace.vim
 source ~/.config/nvim/plugins/lualine.vim
 source ~/.config/nvim/plugins/markdown-preview.vim
+source ~/.config/nvim/plugins/minimap.vim
 source ~/.config/nvim/plugins/neogit.vim
 source ~/.config/nvim/plugins/nvim-web-devicons.vim
 source ~/.config/nvim/plugins/peekaboo.vim " shows content of registers
