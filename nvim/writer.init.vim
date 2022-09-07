@@ -3,11 +3,6 @@
 "--------------------------------------------------------------------------
 set spell
 set termguicolors
-set updatetime=300 " Reduce time for highlighting other references
-set redrawtime=10000 " Allow more time for loading syntax on large files
-set noerrorbells
-" Removes pipes to separate splits
-set fillchars+=vert:\ 
 
 "--------------------------------------------------------------------------
 " Key mappings
