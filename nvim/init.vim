@@ -197,7 +197,11 @@ require "staline".setup {
   }
 require("startup").setup({theme = "dashboard"})
 require("toggleterm").setup{}
-require("bufferline").setup{}
+require("bufferline").setup{
+    options = {
+        separator_style = "slant"
+    }
+}
 EOF
 
 "--------------------------------------------------------------------------
