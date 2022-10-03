@@ -45,7 +45,6 @@ require('packer').startup(function(use)
 )
 
 
-  
 -- default options
 opt.completeopt = {'menu', 'menuone', 'noselect'}
 opt.laststatus = 3
@@ -129,7 +128,7 @@ require('gitsigns').setup({
     vim.keymap.set('n', '<leader>tb', '<cmd>Gitsigns toggle_current_line_blame<CR>')
     vim.keymap.set('n', '<leader>hd', '<cmd>Gitsigns diffthis<CR>')
     vim.keymap.set('n', '<leader>hD', function() require"gitsigns".diffthis("~") end)
-    vim.keymap.set('n', '<leader>hm', function() require"gitsigns".diffthis("main")end)
+    vim.keymap.set('n', '<leader>hm', function() require"gitsigns".diffthis("master")end)
     vim.keymap.set('n', '<leader>hM', diffThisBranch)
     vim.keymap.set('n', '<leader>td', '<cmd>Gitsigns toggle_deleted<CR>')
 
@@ -275,7 +274,8 @@ vim.cmd 'colorscheme tokyonight'
 
 vim.g.floaterm_width = 0.95
 vim.g.floaterm_height = 0.95
-vim.keymap.set('n', '<leader>g', ':FloatermNew lazygit<CR>')
+vim.keymap.set('n', '<leader>g', ':FloatermNew lazygit-gm<CR>')
+vim.keymap.set('n', '<leader>r', ':FloatermNew ranger<CR>')
 
 
 cmd('set foldmethod=expr')
@@ -440,8 +440,9 @@ vim.keymap.set('n', 'gq', ':bd!<CR>')
 vim.keymap.set('n', '<leader>w', ':w<CR>')
 vim.keymap.set('n', '<A-b>', ':bprev<CR>')
 vim.keymap.set('n', '<A-n>', ':bnext<CR>')
+vim.keymap.set('n', '<leader>k', ':noh<CR>')
 
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+vim.keymap.set('t', '<A-w>', '<C-\\><C-n>')
 
 vim.cmd('iabbrev :tup: 👍')
 vim.cmd('iabbrev :tdo: 👎')
