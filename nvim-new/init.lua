@@ -41,9 +41,64 @@ require('packer').startup(function(use)
   use 'tamton-aquib/staline.nvim'
   use 'akinsho/bufferline.nvim'
   use 'ellisonleao/gruvbox.nvim'
+  use 'sainnhe/sonokai'
+  use {
+    "NTBBloodbath/rest.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("rest-nvim").setup({
+        -- Open request results in a horizontal split
+        result_split_horizontal = false,
+        -- Keep the http file buffer above|left when split horizontal|vertical
+        result_split_in_place = false,
+        -- Skip SSL verification, useful for unknown certificates
+        skip_ssl_verification = false,
+        -- Encode URL before making request
+        encode_url = true,
+        -- Highlight request on run
+        highlight = {
+          enabled = true,
+          timeout = 150,
+        },
+        result = {
+          -- toggle showing URL, HTTP info, headers at top the of result window
+          show_url = true,
+          show_http_info = true,
+          show_headers = true,
+          -- executables or functions for formatting response body [optional]
+          -- set them to nil if you want to disable them
+          formatters = {
+            json = "jq",
+            html = function(body)
+              return vim.fn.system({"tidy", "-i", "-q", "-"}, body)
+            end
+          },
+        },
+        -- Jump to request line on run
+        jump_to_request = false,
+        env_file = '.env',
+        custom_dynamic_variables = {},
+        yank_dry_run = true,
+      })
+    end
+  }
   end
 )
 
+-- basic keymaps
+vim.keymap.set('n', 'gq', ':bd!<CR>')
+vim.keymap.set('n', '<leader>w', ':w<CR>')
+vim.keymap.set('n', '<A-b>', ':bprev<CR>')
+vim.keymap.set('n', '<A-n>', ':bnext<CR>')
+vim.keymap.set('n', '<leader>k', ':noh<CR>')
+vim.keymap.set('n', '<A-h>', '<C-w>h')
+vim.keymap.set('n', '<A-j>', '<C-w>j')
+vim.keymap.set('n', '<A-k>', '<C-w>k')
+vim.keymap.set('n', '<A-l>', '<C-w>l')
+vim.keymap.set('n', 'ss', '<kMultiply>')
+
+vim.wo.wrap = false
+vim.wo.list = true
 
 -- default options
 opt.completeopt = {'menu', 'menuone', 'noselect'}
@@ -59,8 +114,6 @@ opt.ignorecase = true
 opt.smartcase = true
 opt.incsearch = true
 -- opt.relativenumber = true
-vim.cmd('set nonumber')
-vim.cmd('set norelativenumber')
 -- set diffopt+=vertical " starts diff mode in vertical split
 opt.cmdheight = 1
 -- set shortmess+=c " don't need to press enter so often
@@ -76,6 +129,9 @@ g.markdown_fenced_languages = { 'javascript', 'js=javascript', 'json=javascript'
 -- opt.path:append({ "**" })
 vim.cmd([[set path=$PWD/**]])
 vim.keymap.set('n', '<leader>v', ':e $MYVIMRC<CR>')
+
+vim.cmd('set nonumber')
+vim.cmd('set norelativenumber')
 
 
 -- staline
@@ -138,21 +194,29 @@ require('gitsigns').setup({
   end
 })
 
--- sbdchd/neoformat
-vim.keymap.set('n', '<leader>F', ':Format<CR>')
-require('formatter').setup({
+-- formatter
+local format = require("formatter")
+
+local prettier = function()
+  return {
+    exe = "prettier",
+    args = {"--stdin-filepath", vim.fn.shellescape(vim.api.nvim_buf_get_name(0)), "--single-quote"},
+    stdin = true,
+  }
+end
+format.setup {
   logging = false,
   filetype = {
-    javascript = {
-        -- prettierd
-       function()
-          return {
-            exe = "prettierd",
-            args = {vim.api.nvim_buf_get_name(0)},
-            stdin = true
-          }
-        end
-    },
+    css = { prettier },
+    scss = { prettier },
+    html = { prettier },
+    javascript = { prettier },
+    javascriptreact = { prettier },
+    typescript = { prettier },
+    typescriptreact = { prettier },
+    markdown = { prettier },
+    json = { prettier },
+    jsonc = { prettier },
     rust = {
       function()
         return {
@@ -161,18 +225,30 @@ require('formatter').setup({
         }
       end
     },
-    sql = {
-        -- prettierd
-       function()
-          return {
-            exe = "sqlformat",
-            args = {vim.api.nvim_buf_get_name(0), '-a'},
-            stdin = true
-          }
-        end
+    lua = {
+      -- stylua
+      function()
+        return {
+          exe = "stylua",
+          args = { "--config-path", "~/.config/.stylua.toml", "-" },
+          stdin = true,
+        }
+      end,
     },
-  }
-})
+  },
+}
+
+-- format on save
+vim.api.nvim_exec(
+  [[
+augroup FormatAutogroup
+  autocmd!
+  autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx,*.vue,*.html,*css,*json FormatWrite
+augroup END
+]],
+  true
+)
+
 local telescope_actions = require("telescope.actions.set")
 
 local fixfolds = {
@@ -188,7 +264,6 @@ local fixfolds = {
 }
 
 local actions = require("telescope.actions")
-
 
 require('telescope').setup {
 	pickers = {
@@ -269,13 +344,15 @@ vim.opt.fillchars = {
   vertright = '█',
   verthoriz = '█',
 }
-vim.cmd 'colorscheme tokyonight'
+vim.cmd 'colorscheme sonokai'
+-- vim.cmd 'colorscheme tokyonight'
 -- vim.cmd 'colorscheme gruvbox'
 
 vim.g.floaterm_width = 0.95
 vim.g.floaterm_height = 0.95
 vim.keymap.set('n', '<leader>g', ':FloatermNew lazygit-gm<CR>')
 vim.keymap.set('n', '<leader>r', ':FloatermNew ranger<CR>')
+vim.keymap.set('n', '<leader>t', ':FloatermNew top<CR>')
 
 
 cmd('set foldmethod=expr')
@@ -287,14 +364,8 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,
   },
-  -- rainbow = {
-  --   enable = true,
-  --   extended_mode = true
-  -- }
-  -- indent = {
-  --   enable = true
-  -- },
 }
+
 -- mfussenegger/nvim-dap
 local dap = require('dap')
 dap.adapters.node2 = {
@@ -311,10 +382,6 @@ vim.fn.sign_define('DapStopped', {text='⭐️', texthl='', linehl='', numhl=''}
 
 vim.keymap.set('n', '<leader>dh', function() require"dap".toggle_breakpoint() end)
 vim.keymap.set('n', '<leader>dH', ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>")
-vim.keymap.set('n', '<A-k>', function() require"dap".step_out() end)
-vim.keymap.set('n', "<A-l>", function() require"dap".step_into() end)
-vim.keymap.set('n', '<A-j>', function() require"dap".step_over() end)
-vim.keymap.set('n', '<A-h>', function() require"dap".continue() end)
 vim.keymap.set('n', '<leader>dn', function() require"dap".run_to_cursor() end)
 vim.keymap.set('n', '<leader>dc', function() require"dap".terminate() end)
 vim.keymap.set('n', '<leader>dR', function() require"dap".clear_breakpoints() end)
@@ -326,6 +393,9 @@ vim.keymap.set('n', '<leader>d?', function() local widgets=require"dap.ui.widget
 vim.keymap.set('n', '<leader>dk', ':lua require"dap".up()<CR>zz')
 vim.keymap.set('n', '<leader>dj', ':lua require"dap".down()<CR>zz')
 vim.keymap.set('n', '<leader>dr', ':lua require"dap".repl.toggle({}, "vsplit")<CR><C-w>l')
+
+-- rest.nvim
+vim.keymap.set('n', '<leader>we', ':lua require("rest-nvim").run()<CR>')
 
 -- nvim-telescope/telescope-dap.nvim
 require('telescope').load_extension('dap')
@@ -436,20 +506,14 @@ require('nvim-tree').setup({
 })
 vim.keymap.set('n', '\\', ':NvimTreeToggle<CR>', {silent=true})
 
-vim.keymap.set('n', 'gq', ':bd!<CR>')
-vim.keymap.set('n', '<leader>w', ':w<CR>')
-vim.keymap.set('n', '<A-b>', ':bprev<CR>')
-vim.keymap.set('n', '<A-n>', ':bnext<CR>')
-vim.keymap.set('n', '<leader>k', ':noh<CR>')
-
-vim.keymap.set('t', '<A-w>', '<C-\\><C-n>')
-
 vim.cmd('iabbrev :tup: 👍')
 vim.cmd('iabbrev :tdo: 👎')
 vim.cmd('iabbrev :smi: 😊')
 vim.cmd('iabbrev :sad: 😔')
 vim.cmd('iabbrev darkred #8b0000')
 vim.cmd('iabbrev darkgreen #006400')
+
+vim.keymap.set('t', '<A-w>', '<C-\\><C-n>')
 
 _G.term_buf_of_tab = _G.term_buf_of_tab or {}
 _G.term_buf_max_nmb = _G.term_buf_max_nmb or 0
