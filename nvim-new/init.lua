@@ -42,6 +42,7 @@ require('packer').startup(function(use)
   use 'akinsho/bufferline.nvim'
   use 'ellisonleao/gruvbox.nvim'
   use 'sainnhe/sonokai'
+  use 'DanilaMihailov/beacon.nvim'
   use {
     "NTBBloodbath/rest.nvim",
     requires = { "nvim-lua/plenary.nvim" },
