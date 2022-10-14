@@ -43,6 +43,7 @@ require('packer').startup(function(use)
   use 'ellisonleao/gruvbox.nvim'
   use 'sainnhe/sonokai'
   use 'DanilaMihailov/beacon.nvim'
+  use 'ggandor/leap.nvim'
   use {
     "NTBBloodbath/rest.nvim",
     requires = { "nvim-lua/plenary.nvim" },
@@ -96,7 +97,11 @@ vim.keymap.set('n', '<A-h>', '<C-w>h')
 vim.keymap.set('n', '<A-j>', '<C-w>j')
 vim.keymap.set('n', '<A-k>', '<C-w>k')
 vim.keymap.set('n', '<A-l>', '<C-w>l')
-vim.keymap.set('n', 'ss', '<kMultiply>')
+vim.keymap.set('n', '<leader>s', '<kMultiply>')
+
+-- copy / paste
+vim.api.nvim_set_keymap("i", "<A-c>", '"*y :let @+=@*<CR>', {noremap=true, silent=true})
+vim.api.nvim_set_keymap("i", "<A-v>", '"+p', {noremap=true, silent=true})
 
 vim.wo.wrap = false
 vim.wo.list = true
@@ -296,24 +301,20 @@ _G.telescope_files_or_git_files = function()
    builtin.find_files()
  end
 end
+
 vim.keymap.set('n', '<leader>fD', function() telescope_live_grep_in_path() end)
 vim.keymap.set('n', '<leader><space>', function() telescope_files_or_git_files() end)
 vim.keymap.set('n', '<leader>fd', function() telescope_find_files_in_path() end)
--- vim.keymap.set('n', '<leader>ft', function() telescope_find_files_in_path("./tests") end)
--- vim.keymap.set('n', '<leader>fT', function() telescope_live_grep_in_path("./tests") end)
--- vim.keymap.set('n', '<leader>fo', ':Telescope file_browser<CR>')
 vim.keymap.set('n', '<leader>ff', ':Telescope find_files<CR>')
--- vim.keymap.set('n', '<leader>fr', ':Telescope resume<CR>')
 vim.keymap.set('n', '<leader>fG', ':Telescope git_branches<CR>')
-vim.keymap.set('n', '<leader>fg', ':Telescope git_status<CR>')
-vim.keymap.set('n', '<c-\\>', ':Telescope buffers<CR>')
+vim.keymap.set('n', '<leader>fg', ':Telescope git_bcommits<CR>')
+vim.keymap.set('n', '<leader>fb', ':Telescope buffers<CR>')
 vim.keymap.set('n', '<leader>fs', ':Telescope lsp_document_symbols<CR>')
 vim.keymap.set('n', '<leader>fr', ':Telescope live_grep<CR>')
 vim.keymap.set('n', '<leader>FF', ':Telescope grep_string<CR>')
 
 -- David-Kunz/cmp-npm
 require('cmp-npm').setup({ ignore = {"beta", "rc"} })
-
 
 local nvim_lsp = require'lspconfig'
 local servers = { 'tsserver', 'rust_analyzer' }
@@ -323,11 +324,12 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+vim.keymap.set('n', 'gt', ':Telescope lsp_type_definitions<CR>')
+vim.keymap.set('n', 'gr', ':Telescope lsp_references<CR>')
 vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end)
 vim.keymap.set('n', 'gh', function() vim.lsp.buf.hover() end)
 vim.keymap.set('n', 'gD', function() vim.lsp.buf.implementation() end)
 vim.keymap.set('n', '<c-k>', function() vim.lsp.buf.signature_help() end)
-vim.keymap.set('n', 'gr', function() vim.lsp.buf.references() end)
 vim.keymap.set('n', 'gR', function() vim.lsp.buf.rename() end)
 vim.keymap.set('n', 'ga', function() vim.lsp.buf.code_action() end)
 vim.keymap.set('n', 'gA', ':Telescope lsp_range_code_actions<CR>')
@@ -356,8 +358,8 @@ vim.keymap.set('n', '<leader>r', ':FloatermNew ranger<CR>')
 vim.keymap.set('n', '<leader>t', ':FloatermNew top<CR>')
 
 
-cmd('set foldmethod=expr')
-cmd('set foldexpr=nvim_treesitter#foldexpr()')
+-- cmd('set foldmethod=expr')
+-- cmd('set foldexpr=nvim_treesitter#foldexpr()')
 
 vim.keymap.set('n', '<leader>n', ':tabe ~/tmp/notes.md<CR>')
 
@@ -719,3 +721,5 @@ end
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
+
+require('leap').set_default_keymaps()
