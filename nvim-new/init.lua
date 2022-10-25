@@ -100,8 +100,11 @@ vim.keymap.set('n', '<A-l>', '<C-w>l')
 vim.keymap.set('n', '<leader>s', '<kMultiply>')
 
 -- copy / paste
-vim.api.nvim_set_keymap("i", "<A-c>", '"*y :let @+=@*<CR>', {noremap=true, silent=true})
-vim.api.nvim_set_keymap("i", "<A-v>", '"+p', {noremap=true, silent=true})
+vim.keymap.set('v', '<A-c>', '"+y')
+vim.keymap.set('n', '<A-v>', '"+p')
+vim.keymap.set('i', '<A-v>', '<c-r>+', {noremap=true})
+vim.keymap.set('c', '<A-v>', '<c-r>+', {noremap=true})
+vim.keymap.set('i', '<c-r>', '<c-v>', {noremap=true})
 
 vim.wo.wrap = false
 vim.wo.list = true
@@ -128,9 +131,20 @@ opt.updatetime = 520
 opt.undofile = true
 cmd('filetype plugin on')
 opt.backup = false
+opt.guifont = "FiraCode Nerd Font:h16"
 g.netrw_banner = false
 g.netrw_liststyle = 3
 g.markdown_fenced_languages = { 'javascript', 'js=javascript', 'json=javascript' }
+
+-- neovide options
+g.neovide_input_use_logo = "v:true"
+g.neovide_remember_window_size = "v:true"
+g.neovide_cursor_trail_length = 0
+g.neovide_cursor_animation_length = 0
+g.neovide_cursor_vfx_mode = "railgun"
+g.neovide_window_floating_opacity = 0.85
+g.neovide_floating_blur = 0.8
+g.neovide_fullscreen = "v:true"
 
 -- opt.path:append({ "**" })
 vim.cmd([[set path=$PWD/**]])
@@ -320,7 +334,7 @@ local nvim_lsp = require'lspconfig'
 local servers = { 'tsserver', 'rust_analyzer' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+    capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
   }
 end
 
@@ -429,7 +443,7 @@ require('nvim-dap-virtual-text').setup()
  table.insert(runtime_path, "lua/?/init.lua")
 
  require'lspconfig'.sumneko_lua.setup {
-   capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+   capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
    settings = {
      Lua = {
@@ -723,3 +737,5 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 require('leap').set_default_keymaps()
+
+
