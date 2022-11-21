@@ -150,10 +150,6 @@ g.neovide_fullscreen = "v:true"
 vim.cmd([[set path=$PWD/**]])
 vim.keymap.set('n', '<leader>v', ':e $MYVIMRC<CR>')
 
-vim.cmd('set nonumber')
-vim.cmd('set norelativenumber')
-
-
 -- staline
 require "staline".setup {
   sections = {
@@ -351,17 +347,17 @@ vim.keymap.set('n', 'gA', ':Telescope lsp_range_code_actions<CR>')
 vim.keymap.set('n', '<leader><esc><esc>', ':tabclose<CR>')
 
 -- vim.g.material_style = "darker"
--- vim.cmd 'colorscheme material'
-vim.opt.fillchars = {
-  horiz     = '█',
-  horizup   = '█',
-  horizdown = '█',
-  vert      = '█',
-  vertleft  = '█',
-  vertright = '█',
-  verthoriz = '█',
-}
-vim.cmd 'colorscheme sonokai'
+vim.cmd 'colorscheme material'
+-- vim.opt.fillchars = {
+--   horiz     = '█',
+--   horizup   = '█',
+--   horizdown = '█',
+--   vert      = '█',
+--   vertleft  = '█',
+--   vertright = '█',
+--   verthoriz = '█',
+-- }
+-- vim.cmd 'colorscheme sonokai'
 -- vim.cmd 'colorscheme tokyonight'
 -- vim.cmd 'colorscheme gruvbox'
 
