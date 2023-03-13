@@ -39,5 +39,12 @@ lvim.plugins = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim"
     }
-  }
+  },
+  { "f-person/git-blame.nvim" },
+  -- colorschemes
+  { "navarasu/onedark.nvim" },
+  { "morhetz/gruvbox" },
+  { "arcticicestudio/nord-vim" },
+  { "dracula/vim" },
+  { "marko-cerovac/material.nvim" },
 }
