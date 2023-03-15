@@ -4,7 +4,7 @@ require("user.autocommands")
 require("user.keybindings")
 
 lvim.colorscheme = "material"
-lvim.transparent_window = true
+lvim.transparent_window = false
 lvim.leader = "space"
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
