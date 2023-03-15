@@ -47,4 +47,6 @@ lvim.plugins = {
   { "arcticicestudio/nord-vim" },
   { "dracula/vim" },
   { "marko-cerovac/material.nvim" },
+  { "sainnhe/sonokai" },
+  { "olimorris/onedarkpro.nvim" }
 }

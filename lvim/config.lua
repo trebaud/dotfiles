@@ -3,7 +3,7 @@ require("user.plugins")
 require("user.autocommands")
 require("user.keybindings")
 
-lvim.colorscheme = "material"
+lvim.colorscheme = "sonokai"
 lvim.transparent_window = false
 lvim.leader = "space"
 lvim.log.level = "warn"
