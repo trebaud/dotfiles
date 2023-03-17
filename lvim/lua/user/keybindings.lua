@@ -12,4 +12,4 @@ if vim.g.neovide == true then
 end
 -- map('t', '<A-w>', '<C-\\><C-n>')
 
--- map('n', 'gr', ':Telescope lsp_references<CR>')
+-- map('n', 'gr', ':Telescope lsp_references<CR>', { noremap = true, silent = true })

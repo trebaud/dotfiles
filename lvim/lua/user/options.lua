@@ -28,8 +28,8 @@ if g.neovide then
   g.neovide_scale_factor = 0.8
 
   -- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
-  g.neovide_transparency = 0.9
-  g.neovide_window_floating_transparency = 0.6
-  g.transparency = 0.9
+  -- g.neovide_transparency = 0.9
+  -- g.neovide_window_floating_transparency = 0.6
+  -- g.transparency = 0.9
   -- g.neovide_background_color = "#0f1117" .. alpha()
 end
