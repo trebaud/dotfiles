@@ -4,12 +4,19 @@ local opt = vim.opt
 
 g.mapleader = " "
 
-require('packer').init({
-  display = {
-    open_cmd = 'vnew \\[packer\\]',
-  }
-})
-vim.cmd [[packadd packer.nvim]]
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 	use 'tpope/vim-commentary'
@@ -84,6 +91,10 @@ require('packer').startup(function(use)
       })
     end
   }
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
   end
 )
 
@@ -363,7 +374,7 @@ vim.cmd 'colorscheme material'
 
 vim.g.floaterm_width = 0.95
 vim.g.floaterm_height = 0.95
-vim.keymap.set('n', '<leader>g', ':FloatermNew lazygit-gm<CR>')
+vim.keymap.set('n', '<leader>g', ':FloatermNew lazygit<CR>')
 vim.keymap.set('n', '<leader>r', ':FloatermNew ranger<CR>')
 vim.keymap.set('n', '<leader>t', ':FloatermNew top<CR>')
 
@@ -417,53 +428,6 @@ vim.keymap.set('n', '<leader>ds', ':Telescope dap frames<CR>')
 vim.keymap.set('n', '<leader>db', ':Telescope dap list_breakpoints<CR>')
 
 require('nvim-dap-virtual-text').setup()
-
--- lua language server
- local system_name
- if vim.fn.has("mac") == 1 then
-   system_name = "macOS"
- elseif vim.fn.has("unix") == 1 then
-   system_name = "Linux"
- elseif vim.fn.has('win32') == 1 then
-   system_name = "Windows"
- else
-   print("Unsupported system for sumneko")
- end
- 
- -- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
- local sumneko_root_path = os.getenv('HOME') ..'/apps/lua-language-server'
- local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-server"
- 
- local runtime_path = vim.split(package.path, ';')
- table.insert(runtime_path, "lua/?.lua")
- table.insert(runtime_path, "lua/?/init.lua")
-
- require'lspconfig'.sumneko_lua.setup {
-   capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
-   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
-   settings = {
-     Lua = {
-       runtime = {
-         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-         version = 'LuaJIT',
-         -- Setup your lua path
-         path = runtime_path,
-       },
-       diagnostics = {
-         -- Get the language server to recognize the `vim` global
-         globals = {'vim'},
-       },
-       workspace = {
-         -- Make the server aware of Neovim runtime files
-         library = vim.api.nvim_get_runtime_file("", true),
-       },
-       -- Do not send telemetry data containing a randomized but unique identifier
-       telemetry = {
-         enable = false,
-       },
-     },
-   },
- }
 
 vim.keymap.set('n', '[b', ':bnext<CR>')
 vim.keymap.set('n', ']b', ':bprev<CR>')
