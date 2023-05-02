@@ -481,7 +481,7 @@ require('nvim-tree').setup({
     width = 35
   }
 })
-vim.keymap.set('n', '\\', ':NvimTreeToggle<CR>', {silent=true})
+vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', {silent=true})
 
 vim.cmd('iabbrev :tup: 👍')
 vim.cmd('iabbrev :tdo: 👎')
