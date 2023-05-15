@@ -35,7 +35,6 @@ require('packer').startup(function(use)
   use 'hrsh7th/nvim-cmp'
   use 'David-Kunz/cmp-npm'
   use 'marko-cerovac/material.nvim'
-  use 'saadparwaiz1/cmp_luasnip'
   use 'voldikss/vim-floaterm'
   use 'nvim-telescope/telescope-ui-select.nvim'
   use 'folke/tokyonight.nvim'
@@ -44,7 +43,6 @@ require('packer').startup(function(use)
   use 'ellisonleao/gruvbox.nvim'
   use 'sainnhe/sonokai'
   use 'DanilaMihailov/beacon.nvim'
-  use 'ggandor/leap.nvim'
 
   if packer_bootstrap then
     require('packer').sync()
@@ -444,5 +442,3 @@ vim.keymap.set('i', '<c-o>', '<esc><s-o>')
 vim.keymap.set('n', '<leader>p', ':PackerSync<CR>')
 
 vim.keymap.set('n', '<leader>?', 'orequire("/usr/local/lib/node_modules/derive-type/")(...arguments)<esc>')
-
-require('leap').set_default_keymaps()
