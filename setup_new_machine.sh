@@ -17,11 +17,20 @@ function setupMongo() {
 	sudo systemctl start mongod
 }
 
+function setupNode() {
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+	source ~/.bashrc
+	nvm install --lts
+	npm i -g typescript prettier
+}
+
 function setupDotFiles() {
 	git clone https://github.com/trebaud/dotfiles.git
 
 	mkdir ~/.config/kitty
 	cp -r ~/dotfiles/kitty/* ~/.config/kitty
+	mkdir ~/.config/nvim
+	cp -r ~/dotfiles/nvim/* ~/.config/nvim
 }
 
 function firstStep() {
@@ -33,12 +42,19 @@ function firstStep() {
 	fi
 
 	# basic utilities
-	sudo apt install wget vim xclip curl jq bat fzf tig gnome-tweaks nmap gh ranger kitty build-essential ripgrep -y
+	sudo apt install wget vim fuse xclip curl jq bat fzf tig gnome-tweaks gh ranger kitty build-essential ripgrep -y
 
 	# Oh My Bash
 	bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 	echo "alias c='clear'" >> ~/.bashrc
 	echo "alias src='source ~/.bashrc'" >> ~/.bashrc
+
+	setupNode
+
+	# setup fonts
+	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/DroidSansMono.zip -P /tmp
+	unzip /tmp/DroidSansMono.zip -d ~/.fonts
+	fc-cache -fv
 
 	# Git Delta for pretty gitdiffs
 	DELTA_VERSION=$(curl -s "https://api.github.com/repos/dandavison/delta/releases/latest" | jq -r '.tag_name')
@@ -49,15 +65,18 @@ function firstStep() {
 
 	# Neovim
 	curl -Lo ~/Downloads/nvim "https://github.com/neovim/neovim/releases/latest/download/nvim.appimage"
+	sudo chmod +x ~/Downloads +x nvim
+	sudo mv ~/Download/nvim /usr/local/bin
 
 	setupDotFiles
+
+	setupMongo
 
 	# install chrome
 	curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o ~/Downloads/chrome
 	sudo chmod +x ~/Downloads/chrome
 	sudo dpkg -i ~/Downloads/chrome
 
-	setupMongo
 }
 
 # to be run after login with google and github
@@ -78,7 +97,7 @@ function optionals() {
 	sudo install lazygit /usr/local/bin
 }
 
-usage() { echo "Usage: $0 [-s <45|90>] [-p <string>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-s <first|second|optionals>] [-p <string>]" 1>&2; exit 1; }
 
 function parseArgs() {
 	while getopts ":s:e:" flag
