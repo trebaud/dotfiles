@@ -34,15 +34,8 @@ function setupDotFiles() {
 }
 
 function firstStep() {
-	# assumes git is already installed
-	if ! command -v git &> /dev/null
-	then
-		echo "git is not installed"
-		exit
-	fi
-
 	# basic utilities
-	sudo apt install wget vim fuse xclip curl jq bat fzf tig gnome-tweaks gh ranger kitty build-essential ripgrep -y
+	sudo apt install git wget vim fuse xclip curl jq bat fzf tig gnome-tweaks gh ranger kitty build-essential ripgrep -y
 
 	# Oh My Bash
 	bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
