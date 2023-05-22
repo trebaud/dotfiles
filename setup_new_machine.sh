@@ -18,10 +18,10 @@ function setupMongo() {
 }
 
 function setupNode() {
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+	NVM_VERSION=$(curl -s "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | jq -r '.tag_name')
+	curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh" | bash
 	source ~/.bashrc
 	nvm install --lts
-	npm i -g typescript prettier
 }
 
 function setupDotFiles() {
@@ -88,6 +88,8 @@ function optionals() {
 	curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
 	tar xf lazygit.tar.gz lazygit
 	sudo install lazygit /usr/local/bin
+
+	npm i -g typescript prettier typescript-language-server neovim
 }
 
 usage() { echo "Usage: $0 [-s <first|second|optionals>] [-p <string>]" 1>&2; exit 1; }
