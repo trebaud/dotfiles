@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+gh pr create --title "$(echo "$1" | toemoji)"
