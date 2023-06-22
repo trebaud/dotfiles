@@ -19,12 +19,17 @@ emoji[poop]=💩
 emoji[yoga]=🧘
 emoji[facepalm]=🤦
 emoji[bug]=🐛
-emoji[package]=🐛
 emoji[fire]=🔥
 emoji[package]=📦
 emoji[laptop]=💻
 emoji[lock]=🔒
 emoji[robot]=🤖
+emoji[mag]=🔎
+emoji[wrench]=🔧
+emoji[tornado]=🌪️
+emoji[wind]=🌬️
+emoji[ambulance]=🚑
+emoji[worse]=🐎
 
 toemoji() {
   local in=/dev/stdin
