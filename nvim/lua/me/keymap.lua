@@ -46,6 +46,10 @@ nmap{"<A-p>", "<cmd>Telescope git_files<cr>"}
 nmap{"L", "<cmd>bnext<cr>"}
 nmap{"H", "<cmd>bprevious<cr>"}
 nmap{"F", "<cmd>HopPattern<cr>"}
+nmap{'<A-h>', '<C-w>h'}
+nmap{'<A-j>', '<C-w>j'}
+nmap{'<A-k>', '<C-w>k'}
+nmap{'<A-l>', '<C-w>l'}
 
 -- festivities
 nmap{"<leader>;", "<cmd>lua require('duck').hatch('🎅', 1)<cr>"}
@@ -53,3 +57,7 @@ nmap{"<leader>'", "<cmd>lua require('duck').cook()<cr>"}
 
 -- nvim-tree
 nmap{"<leader>e", "<cmd>NvimTreeToggle<cr>"}
+
+-- terminal
+vim.keymap.set('t', '<A-w>', '<C-\\><C-n>')
+nmap{"<leader>te", "<cmd>tabnew | terminal<cr>"}
