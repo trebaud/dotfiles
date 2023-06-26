@@ -1,0 +1,5 @@
+#!/bin/sh
+
+BTC_PRICE=$(curl -s http://api.coindesk.com/v1/bpi/currentprice.json | jq '.bpi.USD.rate' | xargs)
+
+echo "\e[36m₿ ${BTC_PRICE} USD\e[0m"
