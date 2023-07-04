@@ -114,6 +114,15 @@ return require('packer').startup(function(use)
   -- le duck
   use 'tamton-aquib/duck.nvim'
 
+  -- Fine cmdline
+  use {
+    'VonHeikemen/fine-cmdline.nvim',
+    requires = {
+      {'MunifTanjim/nui.nvim'}
+    }
+  }
+
+  -- Nvim Tree
   use {
     "kyazdani42/nvim-tree.lua",
     requires = {
@@ -134,4 +143,13 @@ return require('packer').startup(function(use)
       }
     end,
   }
+
+  use {'akinsho/git-conflict.nvim', tag = "*", config = function()
+    require('git-conflict').setup()
+    end
+  }
+
+  -- Floaterm
+  use 'voldikss/vim-floaterm'
+
 end)
