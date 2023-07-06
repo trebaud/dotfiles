@@ -144,6 +144,7 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- git conflict view
   use {'akinsho/git-conflict.nvim', tag = "*", config = function()
     require('git-conflict').setup()
     end
@@ -151,5 +152,20 @@ return require('packer').startup(function(use)
 
   -- Floaterm
   use 'voldikss/vim-floaterm'
+
+  -- Cokeline for bufferline
+  use({
+    'willothy/nvim-cokeline',
+    requires = {
+      "nvim-lua/plenary.nvim",        -- Required for v0.4.0+
+      "kyazdani42/nvim-web-devicons", -- If you want devicons
+    },
+    config = function()
+      require("cokeline").setup()
+    end
+  })
+
+  -- Minimap
+  use 'wfxr/minimap.vim'
 
 end)

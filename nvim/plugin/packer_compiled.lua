@@ -173,6 +173,11 @@ _G.packer_plugins = {
     path = "/home/thomasr/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["minimap.vim"] = {
+    loaded = true,
+    path = "/home/thomasr/.local/share/nvim/site/pack/packer/start/minimap.vim",
+    url = "https://github.com/wfxr/minimap.vim"
+  },
   neogit = {
     loaded = true,
     path = "/home/thomasr/.local/share/nvim/site/pack/packer/start/neogit",
@@ -187,6 +192,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/thomasr/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-cokeline"] = {
+    config = { "\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rcokeline\frequire\0" },
+    loaded = true,
+    path = "/home/thomasr/.local/share/nvim/site/pack/packer/start/nvim-cokeline",
+    url = "https://github.com/willothy/nvim-cokeline"
   },
   ["nvim-dap"] = {
     loaded = true,
@@ -215,7 +226,7 @@ _G.packer_plugins = {
   },
   ["nvim-tree.lua"] = {
     commands = { "NvimTreeToggle", "NvimTreeClose" },
-    config = { "\27LJ\2\n®\1\0\0\5\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\a\0005\4\6\0=\4\b\3=\3\t\2B\0\2\1K\0\1\0\ffilters\vcustom\1\0\0\1\2\0\0\t.git\tview\1\0\2\vnumber\2\19relativenumber\2\1\0\2\18disable_netrw\2\17hijack_netrw\2\nsetup\14nvim-tree\frequire\0" },
+    config = { "\27LJ\2\n®\1\0\0\5\0\n\0\r6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\0025\3\a\0005\4\6\0=\4\b\3=\3\t\2B\0\2\1K\0\1\0\ffilters\vcustom\1\0\0\1\2\0\0\t.git\tview\1\0\2\vnumber\2\19relativenumber\2\1\0\2\17hijack_netrw\2\18disable_netrw\2\nsetup\14nvim-tree\frequire\0" },
     loaded = false,
     needs_bufread = false,
     only_cond = false,
@@ -320,38 +331,42 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
-time([[Config for Comment.nvim]], false)
--- Config for: git-conflict.nvim
-time([[Config for git-conflict.nvim]], true)
-try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17git-conflict\frequire\0", "config", "git-conflict.nvim")
-time([[Config for git-conflict.nvim]], false)
 -- Config for: hop.nvim
 time([[Config for hop.nvim]], true)
 try_loadstring("\27LJ\2\nT\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\tkeys\27etovxpqdgfblzhckisuran\nsetup\bhop\frequire\0", "config", "hop.nvim")
 time([[Config for hop.nvim]], false)
+-- Config for: nvim-cokeline
+time([[Config for nvim-cokeline]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rcokeline\frequire\0", "config", "nvim-cokeline")
+time([[Config for nvim-cokeline]], false)
 -- Config for: lspsaga.nvim
 time([[Config for lspsaga.nvim]], true)
 try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\flspsaga\frequire\0", "config", "lspsaga.nvim")
 time([[Config for lspsaga.nvim]], false)
+-- Config for: git-conflict.nvim
+time([[Config for git-conflict.nvim]], true)
+try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17git-conflict\frequire\0", "config", "git-conflict.nvim")
+time([[Config for git-conflict.nvim]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+time([[Config for Comment.nvim]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.api.nvim_create_user_command, 'NvimTreeClose', function(cmdargs)
-          require('packer.load')({'nvim-tree.lua'}, { cmd = 'NvimTreeClose', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
-        end,
-        {nargs = '*', range = true, bang = true, complete = function()
-          require('packer.load')({'nvim-tree.lua'}, {}, _G.packer_plugins)
-          return vim.fn.getcompletion('NvimTreeClose ', 'cmdline')
-      end})
 pcall(vim.api.nvim_create_user_command, 'NvimTreeToggle', function(cmdargs)
           require('packer.load')({'nvim-tree.lua'}, { cmd = 'NvimTreeToggle', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
         end,
         {nargs = '*', range = true, bang = true, complete = function()
           require('packer.load')({'nvim-tree.lua'}, {}, _G.packer_plugins)
           return vim.fn.getcompletion('NvimTreeToggle ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'NvimTreeClose', function(cmdargs)
+          require('packer.load')({'nvim-tree.lua'}, { cmd = 'NvimTreeClose', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'nvim-tree.lua'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('NvimTreeClose ', 'cmdline')
       end})
 time([[Defining lazy-load commands]], false)
 
