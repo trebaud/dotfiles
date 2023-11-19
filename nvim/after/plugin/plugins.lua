@@ -18,15 +18,6 @@ return require('packer').startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'williamboman/mason.nvim'
 
-  --Markdown preview
-  use 'ellisonleao/glow.nvim'
-  use 'simrat39/symbols-outline.nvim'
-  -- install without yarn or npm
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-  })
-
   --Language packs
   use 'sheerun/vim-polyglot'
 
@@ -64,17 +55,6 @@ return require('packer').startup(function(use)
   --Buffer navigation
   use 'nvim-lualine/lualine.nvim'
 
-  --Haskell
-  use 'neovimhaskell/haskell-vim'
-  use 'alx741/vim-hindent'
-
-  --debugging
-  use 'mfussenegger/nvim-dap'
-  use 'leoluz/nvim-dap-go'
-  use 'rcarriga/nvim-dap-ui'
-  use 'theHamsta/nvim-dap-virtual-text'
-  use 'nvim-telescope/telescope-dap.nvim'
-
   --Grammar checking because I can't english
   use 'rhysd/vim-grammarous'
 
@@ -111,17 +91,6 @@ return require('packer').startup(function(use)
   use 'jparise/vim-graphql' --GraphQL syntax
   use 'mattn/emmet-vim'
 
-  -- le duck
-  use 'tamton-aquib/duck.nvim'
-
-  -- Fine cmdline
-  use {
-    'VonHeikemen/fine-cmdline.nvim',
-    requires = {
-      {'MunifTanjim/nui.nvim'}
-    }
-  }
-
   -- Nvim Tree
   use {
     "kyazdani42/nvim-tree.lua",
@@ -149,27 +118,6 @@ return require('packer').startup(function(use)
     require('git-conflict').setup()
     end
   }
-
-  -- Floaterm
-  use 'voldikss/vim-floaterm'
-
-  -- Cokeline for bufferline
-  use({
-    'willothy/nvim-cokeline',
-    requires = {
-      "nvim-lua/plenary.nvim",        -- Required for v0.4.0+
-      "kyazdani42/nvim-web-devicons", -- If you want devicons
-    },
-    config = function()
-      require("cokeline").setup()
-    end
-  })
-
-  -- Minimap
-  use 'wfxr/minimap.vim'
-
-  -- colorschemes
-  use 'artanikin/vim-synthwave84'
 
   -- for writing
   use 'junegunn/goyo.vim'
