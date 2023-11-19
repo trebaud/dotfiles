@@ -168,4 +168,10 @@ return require('packer').startup(function(use)
   -- Minimap
   use 'wfxr/minimap.vim'
 
+  -- colorschemes
+  use 'artanikin/vim-synthwave84'
+
+  -- for writing
+  use 'junegunn/goyo.vim'
+  use 'preservim/vim-pencil'
 end)
