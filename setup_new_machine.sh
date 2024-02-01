@@ -1,6 +1,18 @@
 #!/bin/bash
 
-email="ENTER_EMAIL_HERE"
+# assumes git is installed and ssh is setup
+# sudo apt install git
+# setupSSHKeys
+
+email="rebaud.thomas@gmail.com"
+
+function setupSSHKeys() {
+	echo "Setuping SSH Keys ..."
+	ssh-keygen -t ed25519 -C "$email"
+	eval "$(ssh-agent -s)"
+	ssh-add ~/.ssh/id_ed25519
+	cat ~/.ssh/id_ed25519.pub
+}
 
 function setupMongo() {
 	echo "Installing Mongo ..."
@@ -21,16 +33,10 @@ function setupNode() {
 	nvm install --lts
 }
 
-function firstStep() {
+function baseInstall() {
 	# basic utilities
 	echo "Installing basic utilities ..."
 	sudo apt install git wget vim fuse xclip curl jq bat fzf tig gnome-tweaks gh ranger kitty build-essential ripgrep -y
-
-	# Oh My Bash
-	echo "Installing Oh-My-Bash ..."
-	bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
-	echo "alias c='clear'" >> ~/.bashrc
-	echo "alias src='source ~/.bashrc'" >> ~/.bashrc
 
 	setupNode
 
@@ -61,21 +67,12 @@ function firstStep() {
 	sudo chmod +x ~/Downloads/chrome
 	sudo dpkg -i ~/Downloads/chrome
 
-}
+	# Oh My Bash
+	echo "Installing Oh-My-Bash ..."
+	bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+	echo "alias c='clear'" >> ~/.bashrc
+	echo "alias src='source ~/.bashrc'" >> ~/.bashrc
 
-function setupGitSSHKeys() {
-	echo "Setuping Git SSH Keys ..."
-	ssh-keygen -t ed25519 -C "$email"
-	eval "$(ssh-agent -s)"
-	ssh-add ~/.ssh/id_ed25519
-	cat ~/.ssh/id_ed25519.pub | xclip -selection clipboard
-	echo "ssh pub key copied to clipboard!!"
-	google-chrome https://github.com/settings/ssh/new &
-}
-
-# to be run after login with google and github
-function secondStep() {
-	setupGitSSHKeys
 }
 
 function setupDotFiles() {
@@ -86,11 +83,6 @@ function setupDotFiles() {
 	cp -r ~/dotfiles/kitty/* ~/.config/kitty
 	mkdir ~/.config/nvim
 	cp -r ~/dotfiles/nvim/* ~/.config/nvim
-}
-
-# to be run after ssh keys setup
-function thirdStep() {
-	setupDotFiles
 }
 
 # installs optional dependencies
@@ -119,15 +111,9 @@ function setupOptionals() {
 
 
 function execute() {
-	if [[ "$1" == "first" ]]
+	if [[ "$1" == "base" ]]
 	then
-		firstStep
-	elif [[ "$1" == "second" ]]
-	then
-		secondStep
-	elif [[ "$1" == "third" ]]
-	then
-		thirdStep
+		baseInstall
 	elif [[ "$1" == "optionals" ]]
 	then
 		setupOptionals
@@ -137,14 +123,14 @@ function execute() {
 	fi
 }
 
-usage() { echo "Usage: $0 [-s <first|second|optionals>] [-p <string>]" 1>&2; exit 1; }
+usage() { echo "Usage: $0 [-i <base|optionals>] [-p <string>]" 1>&2; exit 1; }
 
 [ $# -eq 0 ] && usage
 
 # Parse args
-while getopts ":s:e:h:" arg; do
+while getopts ":i:e:h:" arg; do
 	case $arg in
-		s) stepArg=${OPTARG};;
+		i) stepArg=${OPTARG};;
 		h | *)
 			usage
 			exit 0
