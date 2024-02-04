@@ -4,7 +4,7 @@
 # sudo apt install git
 # setupSSHKeys
 
-email="rebaud.thomas@gmail.com"
+email=""
 
 function setupSSHKeys() {
 	echo "Setuping SSH Keys ..."
