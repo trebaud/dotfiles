@@ -1,29 +1,8 @@
 #!/bin/bash
 
 # assumes git is installed and ssh is setup
-# sudo apt install git
-# setupSSHKeys
 
 email=""
-
-function setupSSHKeys() {
-	echo "Setuping SSH Keys ..."
-	ssh-keygen -t ed25519 -C "$email"
-	eval "$(ssh-agent -s)"
-	ssh-add ~/.ssh/id_ed25519
-	cat ~/.ssh/id_ed25519.pub
-}
-
-function setupMongo() {
-	echo "Installing Mongo ..."
-	curl -fsSL https://pgp.mongodb.com/server-6.0.asc | \
-   sudo gpg -o /usr/share/keyrings/mongodb-server-6.0.gpg \
-   --dearmor
-	echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
-	sudo apt-get update
-	sudo apt-get install -y mongodb-org
-	sudo systemctl start mongod
-}
 
 function setupNode() {
 	echo "Installing node ..."
@@ -38,8 +17,6 @@ function baseInstall() {
 	echo "Installing basic utilities ..."
 	sudo apt install git wget vim fuse xclip curl jq bat fzf tig gnome-tweaks gh ranger kitty build-essential ripgrep -y
 
-	setupNode
-
 	# setup fonts
 	echo "Installing fonts ..."
 	wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/DroidSansMono.zip -P /tmp
@@ -51,7 +28,7 @@ function baseInstall() {
 	DELTA_VERSION=$(curl -s "https://api.github.com/repos/dandavison/delta/releases/latest" | jq -r '.tag_name')
 	curl -Lo ~/Downloads/git-delta.deb "https://github.com/dandavison/delta/releases/latest/download/git-delta_${DELTA_VERSION}_amd64.deb"
 	sudo dpkg -i ~/Downloads/git-delta.deb
-
+	cp ~/dotfiles/git/.gitconfig ~
 	git config --global user.email $email
 	git config --global core.editor "vim"
 
@@ -61,24 +38,19 @@ function baseInstall() {
 	sudo chmod +x ~/Downloads/nvim
 	sudo mv ~/Downloads/nvim /usr/local/bin
 
-	# install chrome
-	echo "Installing Chrome ..."
-	curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o ~/Downloads/chrome
-	sudo chmod +x ~/Downloads/chrome
-	sudo dpkg -i ~/Downloads/chrome
-
 	# Oh My Bash
 	echo "Installing Oh-My-Bash ..."
 	bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 	echo "alias c='clear'" >> ~/.bashrc
 	echo "alias src='source ~/.bashrc'" >> ~/.bashrc
 
+	setupDotFiles
+
+	setupNode
 }
 
 function setupDotFiles() {
 	echo "Setuping dotfiles ..."
-	git clone git@github.com:trebaud/dotfiles.git
-
 	mkdir ~/.config/kitty
 	cp -r ~/dotfiles/kitty/* ~/.config/kitty
 	mkdir ~/.config/nvim
@@ -102,11 +74,6 @@ function setupOptionals() {
 
 	echo "Installing npm deps ..."
 	npm i -g typescript prettier typescript-language-server neovim
-
-	setupMongo
-
-	echo "Installing slack ..."
-	sudo snap install slack
 }
 
 
