@@ -2,7 +2,7 @@
 
 # assumes git is installed and ssh is setup
 
-email=""
+email="rebaud.thomas@gmail.com"
 
 function setupNode() {
 	echo "Installing node ..."
@@ -10,6 +10,14 @@ function setupNode() {
 	curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh" | bash
 	source ~/.bashrc
 	nvm install --lts
+}
+
+function setupDotFiles() {
+	echo "Setuping dotfiles ..."
+	mkdir ~/.config/kitty
+	cp -r ~/dotfiles/kitty/* ~/.config/kitty
+	mkdir ~/.config/nvim
+	cp -r ~/dotfiles/nvim/* ~/.config/nvim
 }
 
 function baseInstall() {
@@ -38,27 +46,8 @@ function baseInstall() {
 	sudo chmod +x ~/Downloads/nvim
 	sudo mv ~/Downloads/nvim /usr/local/bin
 
-	# Oh My Bash
-	echo "Installing Oh-My-Bash ..."
-	bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
-	echo "alias c='clear'" >> ~/.bashrc
-	echo "alias src='source ~/.bashrc'" >> ~/.bashrc
-
 	setupDotFiles
 
-	setupNode
-}
-
-function setupDotFiles() {
-	echo "Setuping dotfiles ..."
-	mkdir ~/.config/kitty
-	cp -r ~/dotfiles/kitty/* ~/.config/kitty
-	mkdir ~/.config/nvim
-	cp -r ~/dotfiles/nvim/* ~/.config/nvim
-}
-
-# installs optional dependencies
-function setupOptionals() {
 	echo "Installing Rust ..."
 	curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
 
@@ -74,35 +63,14 @@ function setupOptionals() {
 
 	echo "Installing npm deps ..."
 	npm i -g typescript prettier typescript-language-server neovim
+
+	# Oh My Bash
+	echo "Installing Oh-My-Bash ..."
+	bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+	echo "alias c='clear'" >> ~/.bashrc
+	echo "alias src='source ~/.bashrc'" >> ~/.bashrc
+
+	setupNode
 }
 
-
-function execute() {
-	if [[ "$1" == "base" ]]
-	then
-		baseInstall
-	elif [[ "$1" == "optionals" ]]
-	then
-		setupOptionals
-	else
-		echo 'ERROR: provide a valid step argument.'
-		exit
-	fi
-}
-
-usage() { echo "Usage: $0 [-i <base|optionals>] [-p <string>]" 1>&2; exit 1; }
-
-[ $# -eq 0 ] && usage
-
-# Parse args
-while getopts ":i:e:h:" arg; do
-	case $arg in
-		i) stepArg=${OPTARG};;
-		h | *)
-			usage
-			exit 0
-			;;
-	esac
-done
-
-execute $stepArg
+baseInstall
