@@ -2,7 +2,7 @@
 
 # assumes git is installed and ssh is setup
 
-email="rebaud.thomas@gmail.com"
+email=""
 
 function setupNode() {
 	echo "Installing node ..."
@@ -66,11 +66,13 @@ function baseInstall() {
 
 	# Oh My Bash
 	echo "Installing Oh-My-Bash ..."
-	bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
-	echo "alias c='clear'" >> ~/.bashrc
-	echo "alias src='source ~/.bashrc'" >> ~/.bashrc
+	curl -fsSLo https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh | bash
 
 	setupNode
+
+	echo "alias c='clear'" >> ~/.bashrc
+	echo "alias src='source ~/.bashrc'" >> ~/.bashrc
+	echo "alias nv='nvim'" >> ~/.bashrc
 }
 
 baseInstall
